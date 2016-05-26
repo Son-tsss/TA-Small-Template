@@ -4,12 +4,13 @@ Codelibrary scripts for the temporary Reportal TA template
 
 ## Config
 
+```js
 class TAConfig {
     static var TAQuestions=[
 
-        // ***** Change these variables to include the correct information
+    // ***** Change these variables to include the correct information
 
-        //Question 1
+    //Question 1
         {
           	TADatasourceId: "ds0",  // the Reportal Data Source ID of the dataset
           	DatabaseSchemaId: 6449, //Schema containig TA model
@@ -26,5 +27,6 @@ class TAConfig {
         }
     ];
 }
+```
 
 
