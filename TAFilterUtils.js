@@ -14,52 +14,57 @@ class TAFilterUtils{
      * @param {User} u - user
      */
     static function setGlobals(p: ScriptPageContext, l: Logger, r: Report, c: ConfirmitFacade, u: User){
-    pageContext = p;
-    log = l;
-    report = r;
-    confirmit = c;
-    user = u;
-}
+        pageContext = p;
+        log = l;
+        report = r;
+        confirmit = c;
+        user = u;
+    }
 
-    /** positive mentions filter
-     *@param filter
+    /**
+     * positive mentions filter
+     * @param filter
      */
     static function positiveMentionsFilter(filter){
-    var vName : String = TALibrary.currentQuestion.overallSentiment.questionName;
-    var fExpr : String;
+        var vName : String = TALibrary.currentQuestion.overallSentiment.questionName;
+        var fExpr : String;
 
-    fExpr = '( ' + vName + ' = "7"';
-    fExpr += ' OR ' + vName + ' = "8"';
-    fExpr += ' OR ' + vName + ' = "9"';
-    fExpr += ' OR ' + vName + ' = "10"';
-    fExpr += ' OR ' + vName + ' = "11" )';
+        fExpr = '( ' + vName + ' = "7"';
+        fExpr += ' OR ' + vName + ' = "8"';
+        fExpr += ' OR ' + vName + ' = "9"';
+        fExpr += ' OR ' + vName + ' = "10"';
+        fExpr += ' OR ' + vName + ' = "11" )';
 
-    filter.Expression = fExpr;
-}
+        filter.Expression = fExpr;
+    }
 
-    /** negative mentions filter
-     *@param filter
+    /**
+     * negative mentions filter
+     * @param filter
      */
     static function negativeMentionsFilter(filter){
-    var vName : String = TALibrary.currentQuestion.overallSentiment.questionName;
-    var fExpr : String;
+        var vName : String = TALibrary.currentQuestion.overallSentiment.questionName;
+        var fExpr : String;
 
-    fExpr = '( ' + vName + ' = "1"';
-    fExpr += ' OR ' + vName + ' = "2"';
-    fExpr += ' OR ' + vName + ' = "3"';
-    fExpr += ' OR ' + vName + ' = "4"';
-    fExpr += ' OR ' + vName + ' = "5" )';
+        fExpr = '( ' + vName + ' = "1"';
+        fExpr += ' OR ' + vName + ' = "2"';
+        fExpr += ' OR ' + vName + ' = "3"';
+        fExpr += ' OR ' + vName + ' = "4"';
+        fExpr += ' OR ' + vName + ' = "5" )';
 
-    filter.Expression = fExpr;
-}
+        filter.Expression = fExpr;
+    }
 
+    /**
+     * current theme filter
+     * @param filter
+     */
     static function currentThemeFilter(filter){
+        var fExpr : String;
+        var pCatList = TALibrary.currentQuestion.currentTheme;
 
-    var fExpr : String;
-    var pCatList = TALibrary.currentQuestion.currentTheme;
+        fExpr = pCatList>=0?('ANY(' + TALibrary.currentQuestion.categories.questionName + ',"'+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id+'")'):'NOT ISNULL('+TALibrary.currentQuestion.overallSentiment.questionName+')';
 
-    fExpr = pCatList>=0?('ANY(' + TALibrary.currentQuestion.categories.questionName + ',"'+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id+'")'):'NOT ISNULL('+TALibrary.currentQuestion.overallSentiment.questionName+')';
-    log.LogDebug(fExpr);
-    filter.Expression = fExpr;
-}
+        filter.Expression = fExpr;
+    }
 }

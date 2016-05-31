@@ -10,67 +10,77 @@ class TALibrary extends TAConfig{
     static var questions = [];
     static var currentQuestion: TAQuestion;
 
-
     /**
+     * function to configure TA variables and set globals to libraries
      * @param {Logger} l - log
      * @param {Report} r - report
-     * @param {ReportState} s - state
      * @param {ConfirmitFacade} c - confirmit
      * @param {User} u - user
      */
-
     static function setReport(p: ScriptPageContext,l: Logger,r: Report,c: ConfirmitFacade,u: User){
-    var question: TAQuestion;
-    if(!flag){
-        pageContext = p,
-            log = l;
-        report = r;
-        confirmit = c;
-        user = u;
+        var question: TAQuestion;
 
-        setGlobals(pageContext,log,report,confirmit,user);
+        if(!flag){
+            pageContext = p,
+                log = l;
+            report = r;
+            confirmit = c;
+            user = u;
 
-        for(var i = 0 ; i<TAQuestions.length; i++){
-            question = new TAQuestion(log,report,confirmit,user,TAQuestions[i]);
-            questions.push(question);
+            setGlobals(pageContext,log,report,confirmit,user);
+
+            for(var i = 0 ; i<TAQuestions.length; i++){
+                question = new TAQuestion(log,report,confirmit,user,TAQuestions[i]);
+                questions.push(question);
+            }
+
+            currentQuestion = questions[0];
+            flag = true;
         }
-
-        currentQuestion = questions[0];
-        flag = true;
     }
-}
 
     /**
+     * function to transfer globals to libraries
      * @param {Logger} l - log
      * @param {Report} r - report
-     * @param {ReportState} s - state
      * @param {ConfirmitFacade} c - confirmit
      * @param {User} u - user
      */
     static function setGlobals(p: ScriptPageContext,l: Logger,r: Report,c: ConfirmitFacade,u: User){
-    pageContext = p,
+        pageContext = p;
         log = l;
-    report = r;
-    confirmit = c;
-    user = u;
+        report = r;
+        confirmit = c;
+        user = u;
 
+        try{
+            TATableUtils.setGlobals(pageContext,log,report,confirmit,user);
+        }catch(e){
+            log.LogDebug("There is no TATableUtils Class. "+e);
+        }
 
-    try{
-        TATableUtils.setGlobals(pageContext,log,report,confirmit,user);
-    }catch(e){
-        log.LogDebug("There is no TATableUtils Class. "+e);
+        try{
+            TAFilterUtils.setGlobals(pageContext,log,report,confirmit,user);
+        }catch(e){
+            log.LogDebug("There is no TAFilterUtils Class. "+e);
+        }
+
+        try{
+            TAParameterUtils.setGlobals(pageContext,log,report,confirmit,user);
+        }catch(e){
+            log.LogDebug("There is no TAParameterUtils Class. "+e);
+        }
     }
 
-    try{
-        TAFilterUtils.setGlobals(pageContext,log,report,confirmit,user);
-    }catch(e){
-        log.LogDebug("There is no TAFilterUtils Class. "+e);
+    /**
+     * function to set current TA question
+     * @param {Byte} i - question number in TAConfig
+     */
+    static function setCurrentQuestion(i){
+        if(!i || i>=questions.length){
+            currentQuestion = questions[0];
+        }else{
+            currentQuestion = questions[i];
+        }
     }
-    try{
-        TAParameterUtils.setGlobals(pageContext,log,report,confirmit,user);
-    }catch(e){
-        log.LogDebug("There is no TAParameterUtils Class. "+e);
-    }
-}
-
 }
