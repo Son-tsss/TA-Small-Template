@@ -15,6 +15,7 @@ class TAConfig {
           	TADatasourceId: "ds0",  // the Reportal Data Source ID of the dataset
           	DatabaseSchemaId: 6449, //Schema containig TA model
             DatabaseTableName: "Retail Model", //Table containing TA model
+            TARelationshipColumnName: "parent", //Name of the 3rd column of the table
             TAQuestionId: "comment2779", //unique id for question+model
             TAQuestionName: "comment2", // the question ID of the Text Analytics verbatim question
             TAModelNo : "779",	// the Genius Model ID
@@ -32,6 +33,7 @@ class TAConfig {
           	TADatasourceId: "ds0",  // the Reportal Data Source ID of the dataset
           	DatabaseSchemaId: 6449, //Schema containig TA model
             DatabaseTableName: "Retail Model", //Table containing TA model
+            TARelationshipColumnName: "parent", //Name of the 3rd column of the table
             TAQuestionId: "comment2779", //unique id for question+model
             TAQuestionName: "comment2", // the question ID of the Text Analytics verbatim question
             TAModelNo : "779",	// the Genius Model ID

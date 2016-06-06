@@ -67,7 +67,7 @@ class TAQuestion{
         //hierarchies
         codes = table.GetColumnValues("id");
         names = table.GetColumnValues("__l9");
-        parents = table.GetColumnValues("Relationship");//"parent");
+        parents = table.GetColumnValues(questionDetails.TARelationshipColumnName?questionDetails.TARelationshipColumnName:"parent");//"parent");
 
         for(var i=0; i<codes.Count; i++){
             categoriesArray.push({id: codes.Item(i), name: names.Item(i), parent: parents.Item(i)});
