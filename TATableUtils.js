@@ -280,6 +280,19 @@ class TATableUtils{
         return mask
     }
 
+    static function getAllCategoriesMask(){
+        var mask: MaskFlat = new MaskFlat();
+
+        mask.IsInclusive = true;
+
+        for(var i=0; i<TALibrary.currentQuestion.subcategories.length; i++){
+            mask.Codes.Add(TALibrary.currentQuestion.subcategories[i].id);
+        }
+
+        return mask
+
+    }
+
 
     /*-----------setup Table functions-------------*/
 
