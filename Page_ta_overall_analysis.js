@@ -3,11 +3,8 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function Render (context) {
-    context.log.LogDebug("page1");
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
-    context.log.LogDebug("page2");
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
-    context.log.LogDebug("page3");
     if(context.component.SubmitSource=="btnResetCategories")
     {
         context.state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
@@ -98,4 +95,84 @@ class Page_ta_overall_analysis {
         var str = TALibrary.currentQuestion.currentTheme<0?("Overall Verbatim Sentiment (Current Period: " + mn + " " + dt.Year + ")"):("Verbatim Sentiment for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name+" (Current Period: " + mn + " " + dt.Year + ")");
         context.component.Output.Append(str);
     }
+
+    static function txtCategoriesList_Hide(context){
+    return false;
+}
+    static function txtCategoriesList_Render(context){
+    var label = "Categories: ";
+    context.component.Output.Append(label);
+}
+
+    static function btnResetCategories_Hide(context){
+    return false;
+}
+    static function btnResetCategories_Render(context){
+        context.component.Label = new Label(9,"x");
+}
+
+    static function txtTopThemes_Hide(context){
+    return false;
+}
+    static function txtTopThemes_Render(context){
+    var label = "Top Themes: ";
+    context.component.Output.Append(label);
+}
+
+    static function txtTopThemes_Hide(context){
+    return false;
+}
+    static function txtTopThemes_Render(context){
+    var label = "Top Themes";
+    context.component.Output.Append(label);
+}
+
+    static function txtTopTrending_Hide(context){
+    return false;
+}
+    static function txtTopTrending_Render(context){
+    var label = "Top Trending";
+    context.component.Output.Append(label);
+}
+
+    static function txtTopPositive_Hide(context){
+    return false;
+}
+    static function txtTopPositive_Render(context){
+    var label = "Top Positive Mentions";
+    context.component.Output.Append(label);
+}
+
+    static function txtTopNegative_Hide(context){
+    return false;
+}
+    static function txtTopNegative_Render(context){
+    var label = "Top Negative Mentions";
+    context.component.Output.Append(label);
+}
+
+    static function txtSentimentTrend_Hide(context){
+    return false;
+}
+    static function txtSentimentTrend_Render(context){
+    var label = "Sentiment trending";
+    context.component.Output.Append(label);
+}
+
+    static function txtPositiveVerb_Hide(context){
+    return false;
+}
+    static function txtPositiveVerb_Render(context){
+    var label = "Comments with Positive sentiment";
+    context.component.Output.Append(label);
+}
+
+    static function txtNegativeVerb_Hide(context){
+    return false;
+}
+    static function txtNegativeVerb_Render(context){
+    var label = "Comments with Negative sentiment";
+    context.component.Output.Append(label);
+}
+
 }
