@@ -7,10 +7,10 @@ class Page_ta_overall_analysis {
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
     if(context.page.SubmitSource=="btnResetCategories")
     {
-        state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
+        context.state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
         TALibrary.currentQuestion.setCurrentTheme(null);
     }else{
-        TALibrary.currentQuestion.setCurrentTheme(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
+        TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
     }
     }
 
