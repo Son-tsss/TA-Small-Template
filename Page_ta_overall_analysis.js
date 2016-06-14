@@ -119,14 +119,6 @@ class Page_ta_overall_analysis {
     context.component.Output.Append(label);
 }
 
-    static function txtTopThemes_Hide(context){
-    return false;
-}
-    static function txtTopThemes_Render(context){
-    var label = "Top Themes";
-    context.component.Output.Append(label);
-}
-
     static function txtTopTrending_Hide(context){
     return false;
 }
