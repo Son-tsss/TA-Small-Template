@@ -6,7 +6,13 @@ class Page_ta_detailed_analysis {
     static function Render (context){
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
-        TALibrary.currentQuestion.setCurrentTheme(context);
+    if(context.page.SubmitSource=="btnResetCategories")
+    {
+        state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
+        TALibrary.currentQuestion.setCurrentTheme(null);
+    }else{
+        TALibrary.currentQuestion.setCurrentTheme(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
+    }
     }
 
     static function tblDetailedTable_Hide(context){

@@ -121,11 +121,9 @@ class TAQuestion{
      * function to set current top Category from parameter
      * @param {Object} context - context object from page {component: page, pageContext: pageContext, log: log, report: report, state: state, confirmit: confirmit, user: user}
      */
-    function setCurrentTheme(context){
-        var state: ReportState = context.state;
-
-        if(state.Parameters.GetString(questionDetails.TACategoryListParameter)){
-            var themeId = state.Parameters.GetString(questionDetails.TACategoryListParameter)
+    function setCurrentTheme(paramValue){
+        if(paramValue){
+            var themeId = paramValue;
             for(var i=0; i<themes.length;i++){
                 if(themes[i].id == themeId){
                     currentTheme = i;
