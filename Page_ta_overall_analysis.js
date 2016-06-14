@@ -3,9 +3,12 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function Render (context) {
+    context.log.LogDebug("page1");
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
+    context.log.LogDebug("page2");
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
-    if(context.page.SubmitSource=="btnResetCategories")
+    context.log.LogDebug("page3");
+    if(context.component.SubmitSource=="btnResetCategories")
     {
         context.state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
         TALibrary.currentQuestion.setCurrentTheme(null);

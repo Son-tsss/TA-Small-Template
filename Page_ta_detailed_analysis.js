@@ -6,7 +6,7 @@ class Page_ta_detailed_analysis {
     static function Render (context){
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
-    if(context.page.SubmitSource=="btnResetCategories")
+    if(context.component.SubmitSource=="btnResetCategories")
     {
         context.state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
         TALibrary.currentQuestion.setCurrentTheme(null);

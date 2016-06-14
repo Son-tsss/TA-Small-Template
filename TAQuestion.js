@@ -72,8 +72,9 @@ class TAQuestion{
         for(var i=0; i<codes.Count; i++){
             categoriesArray.push({id: codes.Item(i), name: names.Item(i), parent: parents.Item(i)});
         }
-
+log.LogDebug("before hierarchy");
         setupHierarchy(codes, names, parents, 0, null);
+    log.LogDebug("after hierarchy");
     }
 
     /**
