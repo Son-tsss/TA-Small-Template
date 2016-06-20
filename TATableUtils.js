@@ -251,7 +251,7 @@ class TATableUtils{
      * @param {Object[]} formulas - array of formulas and colors for series
      * @param {String} title - Header title for chart (Chart by default)
      */
-    static function getChartHeader(type: ChartComboType, formulas, title{
+    static function getChartHeader(type: ChartComboType, formulas, title){
     var chartHeader: HeaderChartCombo = new HeaderChartCombo();
     var chartValues = []
     chartHeader.TypeOfChart = type;
