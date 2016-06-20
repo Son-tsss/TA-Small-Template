@@ -514,8 +514,8 @@ class TATableUtils{
             case "type0":
                 table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
-                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
-                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                    {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
                 ]));
                 table.Sorting.Rows.Position = 13;
                 break;
@@ -523,8 +523,8 @@ class TATableUtils{
             case "type1":
                 table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
-                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
-                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                    {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
                 ]));
                 table.Sorting.Rows.Position = 7;
                 table.Sorting.Rows.Direction = TableSortDirection.Ascending;
@@ -533,8 +533,8 @@ class TATableUtils{
             case "type2":
                 table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader());
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
-                {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
-                {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
+                {Formula: "cellv(col-9,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
                 {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
             ]));
                 table.Sorting.Rows.Position = 15;
@@ -543,8 +543,8 @@ class TATableUtils{
             case "type3":
                 table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader());
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
-                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
-                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
+                    {Formula: "cellv(col-9,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
                 ]));
                 table.Sorting.Rows.Position = 7;
@@ -578,8 +578,8 @@ class TATableUtils{
             default:
                 table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
-                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
-                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                    {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
                 ]));
                 table.Sorting.Rows.Position = 13;
                 break;
