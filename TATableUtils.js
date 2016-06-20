@@ -245,6 +245,35 @@ class TATableUtils{
         return headerTimeSeries
     }
 
+    /**
+     * function to get barchart in the table
+     * @param {ChartComboType} type - bar or 100% bar
+     * @param {Object[]} formulas - array of formulas and colors for series
+     * @param {String} title - Header title for chart (Chart by default)
+     */
+    static function getChartHeader(type: ChartComboType, formulas, title{
+    var chartHeader: HeaderChartCombo = new HeaderChartCombo();
+    var chartValues = []
+    chartHeader.TypeOfChart = type;
+    chartHeader.Thickness = "80%";
+    chartHeader.CssClass = "chart-header";
+    chartHeader.ShowTitle = true;
+    chartHeader.Title = new Label(9, title?title:"Chart");
+    //chartHeader.HideHeader = true;
+
+    var chartValue: ChartComboValue;
+    for(var i = 0; i< formulas.length; i++) {
+        chartValue = new ChartComboValue();
+        chartValue.CssClass = "chart-value";
+        chartValue.Expression = formulas[i].Formula;
+        chartValue.BaseColor = new ChartComboColorSet([formulas[i].Color]);
+        chartValues.push(chartValue);
+    }
+
+    chartHeader.Values = chartValues;
+    return chartHeader;
+}
+
 
     /*-----------masking functions----------------*/
 
@@ -484,43 +513,74 @@ class TATableUtils{
         switch(type){
             case "type0":
                 table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                ]));
                 table.Sorting.Rows.Position = 13;
                 break;
 
             case "type1":
                 table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                ]));
                 table.Sorting.Rows.Position = 7;
                 table.Sorting.Rows.Direction = TableSortDirection.Ascending;
                 break;
 
             case "type2":
                 table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
+                {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+            ]));
                 table.Sorting.Rows.Position = 15;
                 break;
 
             case "type3":
                 table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                ]));
                 table.Sorting.Rows.Position = 7;
                 break;
 
             case "type4":
                 table.ColumnHeaders.AddRange(getTotalPosCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                ]));
                 table.Sorting.Rows.Enabled = true;
                 table.Sorting.Rows.Position = 7;
                 break;
 
             case "type5":
                 table.ColumnHeaders.AddRange(getTotalNegCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
+                ]));
                 table.Sorting.Rows.Position = 7;
                 break;
 
             case "type6":
                 table.ColumnHeaders.AddRange(getProblemIndexHeader(hide));
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
+                ]));
                 table.Sorting.Rows.Position = 15;
                 break;
 
             default:
                 table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                    {Formula: "cellv(col-3,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
+                    {Formula: "cellv(col-2,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
+                ]));
                 table.Sorting.Rows.Position = 13;
                 break;
         }
