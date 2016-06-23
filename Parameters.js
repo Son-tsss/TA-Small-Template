@@ -22,4 +22,12 @@ class Parameters{
     static function pDetailedChartType_Mask(context){}
 
     static function pDetailedChartType_FilterSummary(context) {}
+
+    static function pSubcategoryList_Mask(context){
+        TAParameterUtils.getSubcategoriesMask(context.component);
+    }
+
+    static function pSubcategoryList_FilterSummary(context){
+        TAParameterUtils.createCategoriesListParameter(context.component, context.pageContext.Items["questionID"]);
+    }
 }

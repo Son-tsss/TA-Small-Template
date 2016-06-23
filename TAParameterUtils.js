@@ -42,6 +42,38 @@ class TAParameterUtils{
     }
 
     /**
+     * domain script to get list of TA subcategories
+     * @param {Parameter} parameter - parameter object
+     * @param {Byte} questionID - question number in TAConfig
+     */
+    static function createSubcategoriesListParameter(parameter: Parameter,questionID){
+        var parameterVal: ParameterValueResponse;
+        var question: TAQuestion;
+
+        question=(questionID?TALibrary.questions[questionID]:TALibrary.currentQuestion);
+
+        for(var i=0; i<question.subcategories.length; i++)
+        {
+            parameterVal=new ParameterValueResponse();
+            parameterVal.StringValue=question.themes[i].name;
+            parameterVal.StringKeyValue=question.themes[i].id;
+            parameter.Items.Add(parameterVal);
+        }
+    }
+
+    /**
+     * mask script to get list of TA subcategories of selected category
+     * @param {Parameter} parameter - parameter object
+     * @param {Byte} questionID - question number in TAConfig
+     */
+    static function getSubcategoriesMask(mask: ParameterMaskString){
+        mask.Access = ParameterAccessType.Inclusive;
+        for (var i=0;i<TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length;i++)
+            mask.Keys.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children);
+    }
+
+
+    /**
      * domain script to get list of show N options for detailed analysis chart
      * @param {Parameter} parameter - parameter object
      */

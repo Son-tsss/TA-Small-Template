@@ -255,7 +255,7 @@ class TATableUtils{
     var chartHeader: HeaderChartCombo = new HeaderChartCombo();
     var chartValues = []
     chartHeader.TypeOfChart = type;
-    chartHeader.Thickness = "80%";
+    chartHeader.Thickness = "60%";
     chartHeader.CssClass = "chart-header";
     chartHeader.ShowTitle = true;
     chartHeader.Title = new Label(9, title?title:"Chart");
