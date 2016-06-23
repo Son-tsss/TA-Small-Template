@@ -27,7 +27,10 @@ class Parameters{
         TAParameterUtils.getSubcategoriesMask(context.component);
     }
 
-    static function pSubcategoryList_FilterSummary(context){
+    static function pSubcategoryList_Domain(context){
         TAParameterUtils.createSubcategoriesListParameter(context.component, context.pageContext.Items["questionID"]);
     }
+
+    static function pSubcategoryListFilterSummary(context){
+}
 }
