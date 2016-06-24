@@ -517,7 +517,7 @@ class TATableUtils{
         var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
 
         headerQuestion.IsCollapsed = true;
-        if(TALibrary.currentQuestion.currentSubcategory>=0 && TALibrary.currentQuestion.attributes.length>0){
+        if(TALibrary.currentQuestion.currentSubcategory>=0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length>0){
             headerQuestion.AnswerMask = getAttributesMask();
         }else {
             headerQuestion.AnswerMask = TALibrary.currentQuestion.currentTheme >= 0 ? getCategoriesMask() : getThemesMask();

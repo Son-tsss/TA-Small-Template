@@ -34,7 +34,7 @@ class TAConfig {
 
             TATimeVariable: "interview_start",
           	TACategoryListParameter: "pCategoryList",
-          	TASubcategoryListParameter: "pSubategoryList",
+          	TASubcategoryListParameter: "pSubcategoryList",
           	TADetailedChartShowParameter: "pDetailedChartShow",
           	TADetailedChartTypeParameter: "pDetailedChartType",
           	TAHitlistFields: ["respid","interview_start","verbatim","overallsentiment","categories"]
@@ -53,7 +53,7 @@ class TAConfig {
 
             TATimeVariable: "interview_start",
           	TACategoryListParameter: "pCategoryList",
-        	TASubcategoryListParameter: "pSubategoryList",
+        	TASubcategoryListParameter: "pSubcategoryList",
           	TADetailedChartShowParameter: "pDetailedChartShow",
           	TADetailedChartTypeParameter: "pDetailedChartType",
           	TAHitlistFields: ["respid","interview_start","verbatim","overallsentiment","categories"]
