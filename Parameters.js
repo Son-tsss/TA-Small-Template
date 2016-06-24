@@ -31,6 +31,15 @@ class Parameters{
         TAParameterUtils.createSubcategoriesListParameter(context.component, context.pageContext.Items["questionID"]);
     }
 
-    static function pSubcategoryList_FilterSummary(context){
+    static function pSubcategoryList_FilterSummary(context){}
+
+    static function pAttributesList_Mask(context){
+        TAParameterUtils.getAttributesMask(context.component);
+    }
+
+    static function pAttributesList_Domain(context){
+    TAParameterUtils.createAttributesListParameter(context.component, context.pageContext.Items["questionID"]);
 }
+
+    static function pAttributesList_FilterSummary(context){}
 }

@@ -63,8 +63,7 @@ class TAParameterUtils{
 
     /**
      * mask script to get list of TA subcategories of selected category
-     * @param {Parameter} parameter - parameter object
-     * @param {Byte} questionID - question number in TAConfig
+     * @param {ParameterMaskString} parameter - parameter object
      */
     static function getSubcategoriesMask(mask: ParameterMaskString) {
         if (TALibrary.currentQuestion.currentTheme >= 0) {
@@ -73,6 +72,38 @@ class TAParameterUtils{
                 mask.Keys.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children[i].id);
         }
     }
+
+    /**
+     * domain script to get list of TA attributes
+     * @param {Parameter} parameter - parameter object
+     * @param {Byte} questionID - question number in TAConfig
+     */
+    static function createAttributesListParameter(parameter: Parameter,questionID){
+        var parameterVal: ParameterValueResponse;
+        var question: TAQuestion;
+
+        question=(questionID?TALibrary.questions[questionID]:TALibrary.currentQuestion);
+
+        for(var i=0; i<question.attributes.length; i++)
+        {
+            parameterVal=new ParameterValueResponse();
+            parameterVal.StringValue=question.attributes[i].name;
+            parameterVal.StringKeyValue=question.attributes[i].id;
+            parameter.Items.Add(parameterVal);
+        }
+    }
+
+    /**
+     * mask script to get list of TA attributes of selected category
+     * @param {ParameterMaskString} parameter - parameter object
+     */
+    static function getAttributesMask(mask: ParameterMaskString) {
+    if (TALibrary.currentQuestion.currentSubcategory >= 0) {
+        mask.Access = ParameterAccessType.Inclusive;
+        for (var i = 0; i < TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++)
+            mask.Keys.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
+    }
+}
 
 
     /**
