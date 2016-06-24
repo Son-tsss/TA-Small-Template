@@ -55,8 +55,8 @@ class TAParameterUtils{
         for(var i=0; i<question.subcategories.length; i++)
         {
             parameterVal=new ParameterValueResponse();
-            parameterVal.StringValue=question.themes[i].name;
-            parameterVal.StringKeyValue=question.themes[i].id;
+            parameterVal.StringValue=question.subcategories[i].name;
+            parameterVal.StringKeyValue=question.subcategories[i].id;
             parameter.Items.Add(parameterVal);
         }
     }
