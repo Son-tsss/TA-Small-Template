@@ -67,4 +67,13 @@ class TAFilterUtils{
 
         filter.Expression = fExpr;
     }
+
+    static function currentSubcategoryFilter(filter){
+        var fExpr : String;
+        var pCatList = TALibrary.currentQuestion.currentSubcategory;
+
+        fExpr = pCatList>=0?('ANY(' + TALibrary.currentQuestion.categories.questionName + ',"'+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id+'")'):'NOT ISNULL('+TALibrary.currentQuestion.overallSentiment.questionName+')';
+
+        filter.Expression = fExpr;
+    }
 }

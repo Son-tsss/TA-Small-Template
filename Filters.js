@@ -1,6 +1,10 @@
 class Filters {
     static function fTACategory(context) {
-     TAFilterUtils.currentThemeFilter(context.component);
+        TAFilterUtils.currentThemeFilter(context.component);
+    }
+
+    static function fTASubcategory(context) {
+        TAFilterUtils.currentSubcategoryFilter(context.component);
     }
 
 
