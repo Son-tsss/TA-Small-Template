@@ -66,10 +66,12 @@ class TAParameterUtils{
      * @param {Parameter} parameter - parameter object
      * @param {Byte} questionID - question number in TAConfig
      */
-    static function getSubcategoriesMask(mask: ParameterMaskString){
-        mask.Access = ParameterAccessType.Inclusive;
-        for (var i=0;i<TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length;i++)
-            mask.Keys.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children);
+    static function getSubcategoriesMask(mask: ParameterMaskString) {
+        if (TALibrary.currentQuestion.currentTheme >= 0) {
+            mask.Access = ParameterAccessType.Inclusive;
+            for (var i = 0; i < TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length; i++)
+                mask.Keys.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children[i].id);
+        }
     }
 
 
