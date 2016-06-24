@@ -160,7 +160,7 @@ class Page_ta_detailed_analysis {
         context.component.Output.Append(label);
     }
 
-    static function txtChartSDistribution_Hide(context){
+    static function txtChartDistribution_Hide(context){
         return (context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TADetailedChartTypeParameter) == "type6");
     }
 
@@ -169,7 +169,7 @@ class Page_ta_detailed_analysis {
         context.component.Output.Append(label);
     }
 
-    static function lstChartSDistribution_Hide(context){
+    static function lstChartDistribution_Hide(context){
         return (context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TADetailedChartTypeParameter) == "type6");
     }
 
