@@ -29,6 +29,7 @@ class TAQuestion{
     var categoriesArray = [];//flat structure of categories {id: String, name: String, parentId: String}
 
     var currentTheme = -1;
+    var currentSubcategory = -1;
 
 
     /**
@@ -133,6 +134,24 @@ log.LogDebug("before hierarchy");
             }
         }else{
             currentTheme = -1;
+        }
+    }
+
+    /**
+     * function to set current top Category from parameter
+     * @param {Object} context - context object from page {component: page, pageContext: pageContext, log: log, report: report, state: state, confirmit: confirmit, user: user}
+     */
+    function setCurrentSubcategory(paramValue){
+        if(paramValue){
+            var subcatId = paramValue;
+            for(var i=0; i<subcategories.length;i++){
+                if(subcategories[i].id == subcatId){
+                    currentSubcategory = i;
+                    break;
+                }
+            }
+        }else{
+            currentSubcategory = -1;
         }
     }
 }

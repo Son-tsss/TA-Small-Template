@@ -309,6 +309,22 @@ class TATableUtils{
         return mask
     }
 
+    /**
+     * masking only attributes for selected top category
+     * @return {MaskFlat}
+     */
+    static function getAttributesMask(){
+        var mask: MaskFlat = new MaskFlat();
+
+        mask.IsInclusive = true;
+
+        for(var i=0; i<TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++){
+            mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
+        }
+
+        return mask
+    }
+
     static function getAllCategoriesMask(){
         var mask: MaskFlat = new MaskFlat();
 
@@ -501,7 +517,11 @@ class TATableUtils{
         var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
 
         headerQuestion.IsCollapsed = true;
-        headerQuestion.AnswerMask = TALibrary.currentQuestion.currentTheme>=0?getCategoriesMask():getThemesMask();
+        if(TALibrary.currentQuestion.currentSubcategory>=0 && TALibrary.currentQuestion.attributes.length>0){
+            headerQuestion.AnswerMask = getAttributesMask();
+        }else {
+            headerQuestion.AnswerMask = TALibrary.currentQuestion.currentTheme >= 0 ? getCategoriesMask() : getThemesMask();
+        }
 
         table.RowHeaders.Add(headerQuestion);
 
