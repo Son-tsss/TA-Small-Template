@@ -66,4 +66,133 @@ class Page_ta_detailed_analysis {
             context.component.Columns.Add(TATableUtils.getTAHitlistColumn(TALibrary.currentQuestion.questionDetails.TAHitlistFields[i]));
         }
     }
+
+    static function txtCategoryList_Hide(context){
+        return false;
+    }
+
+    static function txtCategoryList_Render(context){
+    var label = "Categories: ";
+        context.component.Output.Append(label);
+    }
+
+    static function btnResetCategories_Hide(context){
+        return false;
+    }
+
+    static function btnResetCategories_Render(context){
+        context.component.Label = new Label(9,"x");
+    }
+
+    static function txtSubcategoryList_Hide(context){
+        return (TALibrary.currentQuestion.currentTheme<0 || TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length == 0);
+    }
+
+    static function txtSubcategoryList_Render(context){
+        var label = "Subcategories: ";
+        context.component.Output.Append(label);
+    }
+
+    static function lstSubcategoryList_Hide(context){
+        return (TALibrary.currentQuestion.currentTheme<0 || TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length == 0);
+    }
+
+    static function btnResetSubcategories_Hide(context){
+        return (TALibrary.currentQuestion.currentTheme<0 || TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length == 0);
+    }
+
+    static function btnResetSubcategories_Render(context){
+        context.component.Label = new Label(9,"x");
+    }
+
+    static function txtAttributesList_Hide(context){
+        return (TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length == 0);
+    }
+
+    static function txtAttributesList_Render(context){
+        var label = "Attributes: ";
+        context.component.Output.Append(label);
+    }
+
+    static function lstAttributesList_Hide(context){
+        return (TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length == 0);
+    }
+
+    static function btnResetAttributes_Hide(context){
+        return (TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length == 0);
+    }
+
+    static function btnResetAttributes_Render(context){
+        context.component.Label = new Label(9,"x");
+    }
+
+    static function txtDetailedHeader_Hide(context){
+        return false;
+    }
+
+    static function txtDetailedHeader_Render(context){
+        var label = "Category and Sentiment Analysis";
+        if(TALibrary.currentQuestion.currentTheme >=0){
+            label+=" for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name
+        }
+
+        if(TALibrary.currentQuestion.currentSubcategory >=0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length>0){
+            label+="/"+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].name
+        }
+        context.component.Output.Append(label);
+    }
+
+    static function txtChartType_Hide(context){
+        return false;
+    }
+
+    static function txtChartType_Render(context){
+        var label = "Chart type: ";
+        context.component.Output.Append(label);
+    }
+
+    static function txtChartShow_Hide(context){
+        return false;
+    }
+
+    static function txtChartShow_Render(context){
+        var label = "Show N rows: ";
+        context.component.Output.Append(label);
+    }
+
+    static function txtChartSDistribution_Hide(context){
+        return (context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TADetailedChartTypeParameter) == "type6");
+    }
+
+    static function txtChartDistribution_Render(context){
+        var label = "Distribution: ";
+        context.component.Output.Append(label);
+    }
+
+    static function lstChartSDistribution_Hide(context){
+        return (context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TADetailedChartTypeParameter) == "type6");
+    }
+
+    static function txtIndividualHeader_Hide(context){
+        return false;
+    }
+
+    static function txtDeIndividualHeader_Render(context){
+        var label = "Individual Response Analysis";
+        if(TALibrary.currentQuestion.currentTheme >=0){
+            label+=" for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name
+        }
+
+        if(TALibrary.currentQuestion.currentSubcategory >=0){
+            label+="/"+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].name
+        }
+
+        if(TALibrary.currentQuestion.currentAttribute >=0){
+            label+="/"+TALibrary.currentQuestion.attributes[TALibrary.currentQuestion.currentAttribute].name
+        }
+        context.component.Output.Append(label);
+    }
+
+
+
 }
