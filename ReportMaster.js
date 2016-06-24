@@ -114,7 +114,7 @@ class ReportMaster {
 			"        border-top-right-radius:0px;" +
 			"    }" +
 			"    .ta-menu-top-item-hover a, .ta-menu-top-item-selected a{" +
-			"        background: " + TAConfig.Design.LightGrey + "E;" +
+			"        background: " + TAConfig.Design.LightGrey + ";" +
 			"        color: " + TAConfig.Design.DefaultColor + ";" +
 			"    }" +
 			"    #ta-page{" +
