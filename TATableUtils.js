@@ -103,23 +103,24 @@ class TATableUtils{
 
             headerFormula = new HeaderFormula();
             headerFormula.Type = FormulaType.Expression;
+            headerFormula.Percent = (distribution == "distr1");
             headerFormula.Decimals = 0;
             headerFormula.Priority = 0;
 
             switch(groupName){
                 case "neg":
                     headerCategories.Mask.Codes = '1,2,3,4,5';
-                    headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))"+(addMinus?"*(-1)":"");
+                    headerFormula.Expression = "(cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))"+(addMinus?"*(-1)":"")+(distribution == "distr1"?"/100":"");
                     categoryTitle = new Label(9, "Negative");
                     break;
                 case "neu":
                     headerCategories.Mask.Codes = '6';
-                    headerFormula.Expression = "cellv(col-1,row)";
+                    headerFormula.Expression = "cellv(col-1,row)"+(distribution == "distr1"?"/100":"");
                     categoryTitle = new Label(9, "Neutral");
                     break;
                 case "pos":
                     headerCategories.Mask.Codes = '7,8,9,10,11';
-                    headerFormula.Expression = "cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row)";
+                    headerFormula.Expression = "cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row)"+(distribution == "distr1"?"/100":"");
                     categoryTitle = new Label(9, "Positive");
                     break;
             }

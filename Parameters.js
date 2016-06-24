@@ -16,7 +16,7 @@ class Parameters{
     static function pDetailedChartShow_FilterSummary(context){}
 
     static function pDetailedChartType_Domain(context){
-        TAParameterUtils.createDetailedChartDistributionParameter(context.component);
+        TAParameterUtils.createDetailedChartTypeParameter(context.component);
     }
 
     static function pDetailedChartDistribution_Mask(context){}
