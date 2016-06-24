@@ -317,14 +317,19 @@ class TATableUtils{
         var mask: MaskFlat = new MaskFlat();
 
         mask.IsInclusive = true;
-
+        log.LogDebug("getAttributesMask");
         for(var i=0; i<TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++){
+            log.LogDebug("Attribute "+i+": "+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
             mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
         }
 
         return mask
     }
 
+    /**
+     * masking all subcategories for selected top category
+     * @return {MaskFlat}
+     */
     static function getAllCategoriesMask(){
         var mask: MaskFlat = new MaskFlat();
 
@@ -335,7 +340,6 @@ class TATableUtils{
         }
 
         return mask
-
     }
 
 
