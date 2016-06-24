@@ -30,6 +30,7 @@ class TAQuestion{
 
     var currentTheme = -1;
     var currentSubcategory = -1;
+    var currentAttribute = -1;
 
 
     /**
@@ -136,7 +137,7 @@ class TAQuestion{
     }
 
     /**
-     * function to set current top Category from parameter
+     * function to set current Subcategory from parameter
      * @param {Object} context - context object from page {component: page, pageContext: pageContext, log: log, report: report, state: state, confirmit: confirmit, user: user}
      */
     function setCurrentSubcategory(paramValue){
@@ -150,6 +151,24 @@ class TAQuestion{
             }
         }else{
             currentSubcategory = -1;
+        }
+    }
+
+    /**
+     * function to set current attribute from parameter
+     * @param {Object} context - context object from page {component: page, pageContext: pageContext, log: log, report: report, state: state, confirmit: confirmit, user: user}
+     */
+    function setCurrentAttribute(paramValue){
+        if(paramValue){
+            var attrId = paramValue;
+            for(var i=0; i<attributes.length;i++){
+                if(attributes[i].id ==  attrId){
+                    currentAttribute = i;
+                    break;
+                }
+            }
+        }else{
+            currentAttribute = -1;
         }
     }
 }

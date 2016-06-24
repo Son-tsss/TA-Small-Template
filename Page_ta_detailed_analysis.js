@@ -12,9 +12,11 @@ class Page_ta_detailed_analysis {
             context.state.Parameters[TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter]=null;
             TALibrary.currentQuestion.setCurrentTheme(null);
             TALibrary.currentQuestion.setCurrentSubcategory(null);
+            TALibrary.currentQuestion.setCurrentAttribute(null);
         }else{
             TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
             TALibrary.currentQuestion.setCurrentSubcategory(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter));
+            TALibrary.currentQuestion.setCurrentAttribute(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter));
         }
     }
 

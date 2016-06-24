@@ -7,6 +7,10 @@ class Filters {
         TAFilterUtils.currentSubcategoryFilter(context.component);
     }
 
+    static function fTAAttribute(context) {
+    TAFilterUtils.currentAttributeFilter(context.component);
+}
+
 
     static function fTANegativeComments(context) {
         TAFilterUtils.negativeMentionsFilter(context.component);
