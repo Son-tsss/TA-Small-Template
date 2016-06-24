@@ -228,7 +228,7 @@ class TATableUtils{
      * @param {int} to
      * @return {HeaderQuestion}
      */
-    static function addTimeSeries(from, to){
+    static function getTimeSeries(from, to){
         var questionnaireElement: QuestionnaireElement = TALibrary.currentQuestion.project.CreateQuestionnaireElement(TALibrary.currentQuestion.questionDetails.TATimeVariable);
         var headerTimeSeries: HeaderQuestion;
 
@@ -349,11 +349,12 @@ class TATableUtils{
      * function to setub categories drilldown
      * @param {Table} table
      * @param {String} pageIDs - string with pageIDs for drilldown separated by commas
+     * @param {Boolean} subcategories - flag for drilldown for attributes
      */
-    static function setupTableDrilldown(table: Table, pageIDs: String){
+    static function setupTableDrilldown(table: Table, pageIDs: String, subcategories: Boolean){
         table.Drilling.Rows.Enabled = true;
         table.Drilling.Rows.Type = DrilldownType.SetParameter;
-        table.Drilling.Rows.ParameterID = TALibrary.currentQuestion.questionDetails.TACategoryListParameter;
+        table.Drilling.Rows.ParameterID = subcategories?TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter:TALibrary.currentQuestion.questionDetails.TACategoryListParameter;
         table.Drilling.Rows.TargetPages = pageIDs;
     }
 
@@ -380,6 +381,8 @@ class TATableUtils{
 
         if(TALibrary.currentQuestion.currentTheme<0){
             setupTableDrilldown(table, "ta_overall_analysis");
+        }else{
+            setupTableDrilldown(table,"ta_detailed_analysis",true)
         }
     }
 
@@ -394,8 +397,8 @@ class TATableUtils{
         headerQuestion.AnswerMask = TALibrary.currentQuestion.currentTheme>=0?getCategoriesMask():getThemesMask();
         table.RowHeaders.Add(headerQuestion);
 
-        table.ColumnHeaders.Add(addTimeSeries((-2), (-2))); //change to -2
-        table.ColumnHeaders.Add(addTimeSeries((-1), (-1))); //change to -1
+        table.ColumnHeaders.Add(getTimeSeries((-2), (-2))); //change to -2
+        table.ColumnHeaders.Add(getTimeSeries((-1), (-1))); //change to -1
 
         var trendingFormula = new HeaderFormula();
 
@@ -416,6 +419,8 @@ class TATableUtils{
 
         if(TALibrary.currentQuestion.currentTheme<0){
             setupTableDrilldown(table, "ta_overall_analysis");
+        }else{
+            setupTableDrilldown(table,"ta_detailed_analysis",true)
         }
     }
 
@@ -439,6 +444,8 @@ class TATableUtils{
 
         if(TALibrary.currentQuestion.currentTheme<0){
             setupTableDrilldown(table, "ta_overall_analysis");
+        }else{
+            setupTableDrilldown(table,"ta_detailed_analysis",true)
         }
     }
 
@@ -463,6 +470,8 @@ class TATableUtils{
         if(TALibrary.currentQuestion.currentTheme<0){
             setupTableDrilldown(table, "ta_overall_analysis");
 
+        }else{
+            setupTableDrilldown(table,"ta_detailed_analysis",true)
         }
     }
 
@@ -471,7 +480,7 @@ class TATableUtils{
      * @param {Table} table
      */
     static function createSentimentTrendingTable(table: Table){
-        var headerTimeSeries: HeaderQuestion = addTimeSeries((-13), (-1));
+        var headerTimeSeries: HeaderQuestion = getTimeSeries((-13), (-1));
 
         var headerQuestion: HeaderQuestion;
 
@@ -628,6 +637,8 @@ class TATableUtils{
 
         if(TALibrary.currentQuestion.currentTheme<0){
             setupTableDrilldown(table, "ta_detailed_analysis");
+        }else{
+            setupTableDrilldown(table,"ta_detailed_analysis",true)
         }
 
         if(hide)table.CssClass = "hidden";
