@@ -177,7 +177,7 @@ class Page_ta_detailed_analysis {
         return false;
     }
 
-    static function txtDeIndividualHeader_Render(context){
+    static function txtIndividualHeader_Render(context){
         var label = "Individual Response Analysis";
         if(TALibrary.currentQuestion.currentTheme >=0){
             label+=" for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name
