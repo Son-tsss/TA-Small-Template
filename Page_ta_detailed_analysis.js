@@ -30,7 +30,7 @@ class Page_ta_detailed_analysis {
                     context.state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                     TALibrary.currentQuestion.setCurrentAttribute(null);
                 }else{
-                    TALibrary.currentQuestion.setCurrentAttribute(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter));
+                    TALibrary.currentQuestion.setCurrentAttribute(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TAAttributesListParameter));
                 }
 
                 if(context.state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter) || TALibrary.currentQuestion.currentTheme<0 || context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id){
