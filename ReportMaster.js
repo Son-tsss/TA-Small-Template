@@ -371,12 +371,64 @@ class ReportMaster {
 			"</style>" +
 			"<script>" +
 			"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
-			"var paletteTrending = ['" + TAConfig.Design.DarkGrey + "','" + TAConfig.Design.DefaultColor + "'];" +
+			"var paletteTrending = ['" + TAConfig.Design.ComplimentaryColor + "','" + TAConfig.Design.DefaultColor + "'];" +
 			"var palettePositive = ['" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
 			"var paletteNegative = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "'];" +
 			"var paletteOverallSatisfaction = ['" + TAConfig.Design.DefaultColor + "'];" +
-			"</script>;" +
-			"";
+			" Y.use(\"cssbutton\");" +
+			"    YUI().use('event-custom', function(Y)" +
+			"    {" +
+			"        Y.Global.on('cf:chartBeforeCreate', function(eventData)" +
+			"        {" +
+			"            console.log(eventData);" +
+			"            delete eventData.chartOptions.chart.width;" +
+			"            var chartOptions = eventData.chartOptions;" +
+			"            switch(eventData.chartInfo.chartName){" +
+			"                case \"chtTopThemes\":" +
+			"                    chartOptions.chart.type = \"column\";" +
+			"                    chartOptions.colors = paletteNPS;" +
+			"                    chartOptions.legend.enabled = true;" +
+			"                    break;" +
+			"                case \"chtTopTrending\":" +
+			"                    chartOptions.chart.type = \"column\";" +
+			"                    chartOptions.colors = paletteTrending;" +
+			"                    chartOptions.legend.enabled = true;" +
+			"                    break;" +
+			"                case \"chtTopPositive\":" +
+			"                    chartOptions.chart.type = \"column\";" +
+			"                    chartOptions.colors = palettePositive;" +
+			"                    chartOptions.legend.enabled = false;" +
+			"                    break;" +
+			"                case \"chtTopNegative\":" +
+			"                    chartOptions.chart.type = \"column\";" +
+			"                    chartOptions.colors = paletteNegative;" +
+			"                    chartOptions.legend.enabled = false;" +
+			"                    break;" +
+			"                case \"chtSentimentTrend\":" +
+			"                    chartOptions.chart.type = \"line\";" +
+			"                    chartOptions.colors = paletteOverallSatisfaction;" +
+			"                    break" +
+			"            }" +
+			"            chartOptions.legend.shadow = false;" +
+			"            chartOptions.legend.borderWidth = 0;" +
+			"            chartOptions.legend.itemStyle.color = \"" + TAConfig.Design.DarkGrey + "\";" +
+			"            chartOptions.legend.itemStyle.fontSize = \"12px\";" +
+			"            chartOptions.xAxis.gridLineColor = \"" + TAConfig.Design.DarkGrey + "\";" +
+			"            chartOptions.xAxis.labels.style.color = \"" + TAConfig.Design.DarkGrey + "\";" +
+			"            chartOptions.xAxis.labels.style.fontSize = \"12px\";" +
+			"            chartOptions.yAxis.gridLineColor = \"" + TAConfig.Design.DarkGrey + "\";" +
+			"            chartOptions.yAxis.labels.enabled =false;" +
+			"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
+			"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
+			"        });" +
+			"    });"+
+			"</script>;";
+
+
+
+
+
+
 		context.component.Output.Append(str);
 	}
 
