@@ -385,7 +385,7 @@ class ReportMaster {
 	}
 
 	static function txtReportName_Render(context) {
-	str = TAConfig.Design.ReportName?TAConfig.Design.ReportName:context.report.Name;
+	var str = TAConfig.Design.ReportName?TAConfig.Design.ReportName:context.report.Name;
 	context.component.Output.Append(str);
 	}
 }
