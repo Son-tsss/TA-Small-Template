@@ -135,4 +135,15 @@ class TAParameterUtils{
             parameter.Items.Add(parameterVal);
         }
     }
+
+    static function createDetailedChartDistributionParameter(parameter: Parameter){
+    var chtTypes = ["Counts","Percents"];
+    var parameterVal: ParameterValueResponse;
+    for(var i=0; i<chtTypes.length; i++){
+        parameterVal=new ParameterValueResponse();
+        parameterVal.StringValue=chtTypes[i];
+        parameterVal.StringKeyValue="distr"+i;
+        parameter.Items.Add(parameterVal);
+    }
+}
 }

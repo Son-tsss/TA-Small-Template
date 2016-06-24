@@ -71,9 +71,10 @@ class TATableUtils{
     /**
      * function to have categories header for Negative, Neutral, Positive and Total values
      * @param {String} groupName - "total", "neg", "neu", "pos"
+     * @param {String} distribution - distribution name distr0 - Counts, distr1 - percents
      * @param {Boolean} addMinus - flag to add minus to the formula(only for negative category)
      */
-    static function getCategoriesHeader(groupName: String, addMinus){
+    static function getCategoriesHeader(groupName: String, distribution, addMinus){
         var header: HeaderCollection = new HeaderCollection();
         var headerFormula : HeaderFormula;
         var headerCategories: HeaderCategories;
@@ -90,6 +91,15 @@ class TATableUtils{
             headerCategories.Mask.Type = MaskType.ShowCodes;
             headerCategories.Totals = false;
             headerCategories.HideData = true;
+            headerCategories.Distributions.Enabled = true;
+
+            if(distribution == "distr1"){
+                headerCategories.Distributions.HorizontalPercents = true;
+                headerCategories.Distributions.Count = false;
+            }else{
+                headerCategories.Distributions.HorizontalPercents = false;
+                headerCategories.Distributions.Count = true;
+            }
 
             headerFormula = new HeaderFormula();
             headerFormula.Type = FormulaType.Expression;
@@ -127,13 +137,13 @@ class TATableUtils{
      * function to get categories header with Total and NegNeuPos recoding
      * @return {HeaderCollection}
      */
-    static function getTotalNegNeuPosCategoriesHeader(){
+    static function getTotalNegNeuPosCategoriesHeader(distribution){
         var header: HeaderCollection = new HeaderCollection();
 
-        header.AddRange(getCategoriesHeader("total",false));
-        header.AddRange(getCategoriesHeader("neg",false));
-        header.AddRange(getCategoriesHeader("neu",false));
-        header.AddRange(getCategoriesHeader("pos",false));
+        header.AddRange(getCategoriesHeader("total",distribution,false));
+        header.AddRange(getCategoriesHeader("neg",distribution,false));
+        header.AddRange(getCategoriesHeader("neu",distribution,false));
+        header.AddRange(getCategoriesHeader("pos",distribution,false));
 
         return header;
     }
@@ -142,12 +152,12 @@ class TATableUtils{
      * function to get categories header with Total and NegPos recoding
      * @return {HeaderCollection}
      */
-    static function getTotalNegPosCategoriesHeader(){
+    static function getTotalNegPosCategoriesHeader(distribution){
         var header: HeaderCollection = new HeaderCollection();
 
-        header.AddRange(getCategoriesHeader("total",false));
-        header.AddRange(getCategoriesHeader("neg", true));
-        header.AddRange(getCategoriesHeader("pos", false));
+        header.AddRange(getCategoriesHeader("total",distribution,false));
+        header.AddRange(getCategoriesHeader("neg",distribution,true));
+        header.AddRange(getCategoriesHeader("pos",distribution,false));
 
         return header;
     }
@@ -156,11 +166,11 @@ class TATableUtils{
      * function to get categories header with Total and Pos recoding
      * @return {HeaderCollection}
      */
-    static function getTotalPosCategoriesHeader(){
+    static function getTotalPosCategoriesHeader(distribution){
         var header: HeaderCollection = new HeaderCollection();
 
-        header.AddRange(getCategoriesHeader("total",false));
-        header.AddRange(getCategoriesHeader("pos", false));
+        header.AddRange(getCategoriesHeader("total",distribution,false));
+        header.AddRange(getCategoriesHeader("pos",distribution,false));
 
         return header;
     }
@@ -169,11 +179,11 @@ class TATableUtils{
      * function to get categories header with Total and Neg recoding
      * @return {HeaderCollection}
      */
-    static function getTotalNegCategoriesHeader(){
+    static function getTotalNegCategoriesHeader(distribution){
         var header: HeaderCollection = new HeaderCollection();
 
-        header.AddRange(getCategoriesHeader("total",false));
-        header.AddRange(getCategoriesHeader("neg", false));
+        header.AddRange(getCategoriesHeader("total",distribution,false));
+        header.AddRange(getCategoriesHeader("neg",distribution,false));
 
         return header;
     }
@@ -185,11 +195,10 @@ class TATableUtils{
      * @param {Boolean} hide - hide data for Total and Sentiment(use in table for problem index chart)
      * @return {HeaderCollection}
      */
-    static function getProblemIndexHeader(hide){
+    static function getProblemIndexHeader(){
         var header: HeaderCollection = new HeaderCollection();
         var colq: HeaderCategories = new HeaderCategories();
 
-        colq.HideData = hide;
         colq.Mask.Type = MaskType.HideAll;
         colq.Distributions.HorizontalPercents = false;
         colq.Distributions.VerticalPercents = false;
@@ -206,7 +215,6 @@ class TATableUtils{
         var cf: HeaderFormula = new HeaderFormula();
 
         cf.Type = FormulaType.Expression;
-        cf.HideData = hide
         cf.Decimals = 2;
         cf.Expression = "IF(((cellv(col-1,row))>0),(((cellv(col-12,row)*(-5)+cellv(col-11,row)*(-4)+cellv(col-10,row)*(-3)+cellv(col-9,row)*(-2)+cellv(col-8,row)*(-1)+cellv(col-6,row)+cellv(col-5,row)*(2)+cellv(col-4,row)*(3)+cellv(col-3,row)*(4)+cellv(col-2,row)*(5))*10/(cellv(col-1,row)))/10),0)";
         cf.Title = new Label(9, "Avg");
@@ -528,9 +536,9 @@ class TATableUtils{
      * @param {Table} table
      * @param {String} type - type of statistics from parameter
      * @param {String} n - showN from parameter
-     * @param {Boolean} hide - hide statistics for chart
+     * @param {String} distribution - what statistic show in chart distr0 - counts, distr1 - percents, counts by default
      */
-    static function createDetailedTable(table: Table, type, n, hide){
+    static function createDetailedTable(table: Table, type, n, distribution){
         var headerQuestion: HeaderQuestion = getTAQuestionHeader("categorySentiment");
 
         headerQuestion.IsCollapsed = true;
@@ -549,7 +557,7 @@ class TATableUtils{
 
         switch(type){
             case "type0":
-                table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
@@ -558,7 +566,7 @@ class TATableUtils{
                 break;
 
             case "type1":
-                table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
@@ -568,7 +576,7 @@ class TATableUtils{
                 break;
 
             case "type2":
-                table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                 {Formula: "cellv(col-9,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
                 {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
@@ -578,7 +586,7 @@ class TATableUtils{
                 break;
 
             case "type3":
-                table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalNegNeuPosCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-9,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
                     {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Neutral},
@@ -588,7 +596,7 @@ class TATableUtils{
                 break;
 
             case "type4":
-                table.ColumnHeaders.AddRange(getTotalPosCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalPosCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
                 ]));
@@ -597,7 +605,7 @@ class TATableUtils{
                 break;
 
             case "type5":
-                table.ColumnHeaders.AddRange(getTotalNegCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalNegCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
                 ]));
@@ -605,7 +613,7 @@ class TATableUtils{
                 break;
 
             case "type6":
-                table.ColumnHeaders.AddRange(getProblemIndexHeader(hide));
+                table.ColumnHeaders.AddRange(getProblemIndexHeader());
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
                 ]));
@@ -613,7 +621,7 @@ class TATableUtils{
                 break;
 
             default:
-                table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader());
+                table.ColumnHeaders.AddRange(getTotalNegPosCategoriesHeader(distribution));
                 table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-7,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative},
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Positive}
@@ -646,7 +654,6 @@ class TATableUtils{
                 setupTableDrilldown(table,"ta_detailed_analysis",true)
         }
 
-        if(hide)table.CssClass = "hidden";
     }
 
     /**
