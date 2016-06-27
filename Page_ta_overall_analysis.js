@@ -110,10 +110,12 @@ class Page_ta_overall_analysis {
     }
 
     static function txtOverallHeader_Render(context){
-        var dt : DateTime = DateTime.Now;
-        dt = dt.AddMonths(-1);
-        var mn : String = dt.ToString("MMMM");
-        context.component.Output.Append("Summary (Current Period: " + mn + " " + dt.Year + ")");
+        var label = "Summary";
+        if(TALibrary.currentQuestion.currentTheme >=0){
+            label+=" for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name
+        }
+
+        context.component.Output.Append(label);
     }
 
     static function txtVerbSentimentHeader_Hide(context){
@@ -121,11 +123,11 @@ class Page_ta_overall_analysis {
     }
 
     static function txtVerbSentimentHeader_Render(context){
-        var dt : DateTime = DateTime.Now;
-        dt = dt.AddMonths(-1);
-        var mn : String = dt.ToString("MMMM");
-        var str = TALibrary.currentQuestion.currentTheme<0?("Overall Verbatim Sentiment (Current Period: " + mn + " " + dt.Year + ")"):("Verbatim Sentiment for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name+" (Current Period: " + mn + " " + dt.Year + ")");
-        context.component.Output.Append(str);
+        var label = "Verbatim Sentiment";
+        if(TALibrary.currentQuestion.currentTheme >=0){
+            label+=" for category "+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].name
+        }
+        context.component.Output.Append(label);
     }
 
     static function txtCategoriesList_Hide(context){
