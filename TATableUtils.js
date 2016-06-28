@@ -210,6 +210,7 @@ class TATableUtils{
 
         var cs: HeaderStatistics = new HeaderStatistics();
         cs.Decimals = 2;
+        cs.HideData = false;
         header.Add(cs);
 
         var cf: HeaderFormula = new HeaderFormula();
