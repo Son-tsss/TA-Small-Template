@@ -212,12 +212,12 @@ class TATableUtils{
         cs.Decimals = 2;
         header.Add(cs);
 
-        cs = new HeaderFormula();
-        cs.Decimals = 0;
-        cs.Type = FormulaType.Expression;
-        cs.Expression = "IF((CELLV(COL-1,ROW) - 1)< 0 ,(1 - ROUND(CELLV(COL-1,ROW),2)) * CELLV(COL-2,ROW),EMPTYV())";
-        cs.Title = new Label(9, "Problem Index");
-        header.Add(cs);
+        var cf: HeaderFormula = new HeaderFormula();
+        cf.Decimals = 0;
+        cf.Type = FormulaType.Expression;
+        cf.Expression = "IF((CELLV(COL-1,ROW) - 1)< 0 ,(1 - ROUND(CELLV(COL-1,ROW),2)) * CELLV(COL-2,ROW),EMPTYV())";
+        cf.Title = new Label(9, "Problem Index");
+        header.Add(cf);
 
         return header;
     }
@@ -500,7 +500,6 @@ class TATableUtils{
             headerStatistics.Decimals = 2;
             headerStatistics.HideHeader = true;
 
-            headerTimeSeries.SubHeaders.Add(headerCategories);
             headerTimeSeries.SubHeaders.Add(headerStatistics);
         }else{
             headerQuestion = getTAQuestionHeader("overallSentiment");
