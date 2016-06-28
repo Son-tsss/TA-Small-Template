@@ -206,27 +206,18 @@ class TATableUtils{
         colq.Totals = true;
         header.Add(colq);
 
-        colq=new HeaderCategories();
-        colq.HideData = true;
-        colq.Distributions.HorizontalPercents = false;
-        colq.Distributions.VerticalPercents = false;
-        colq.Totals = true;
-        header.Add(colq);
 
-        var cf: HeaderFormula = new HeaderFormula();
 
-        cf.Type = FormulaType.Expression;
-        cf.Decimals = 2;
-        cf.Expression = "IF(((cellv(col-1,row))>0),(((cellv(col-12,row)*(-5)+cellv(col-11,row)*(-4)+cellv(col-10,row)*(-3)+cellv(col-9,row)*(-2)+cellv(col-8,row)*(-1)+cellv(col-6,row)+cellv(col-5,row)*(2)+cellv(col-4,row)*(3)+cellv(col-3,row)*(4)+cellv(col-2,row)*(5))*10/(cellv(col-1,row)))/10),0)";
-        cf.Title = new Label(9, "Avg");
-        header.Add(cf);
+        var cs: HeaderStatistics = new HeaderStatistics();
+        cs.Decimals = 2;
+        header.Add(cs);
 
-        cf = new HeaderFormula();
-        cf.Decimals = 0;
-        cf.Type = FormulaType.Expression;
-        cf.Expression = "IF((CELLV(COL-1,ROW) - 1)< 0 ,(1 - ROUND(CELLV(COL-1,ROW),2)) * CELLV(COL-2,ROW),EMPTYV())";
-        cf.Title = new Label(9, "Problem Index");
-        header.Add(cf);
+        cs = new HeaderFormula();
+        cs.Decimals = 0;
+        cs.Type = FormulaType.Expression;
+        cs.Expression = "IF((CELLV(COL-1,ROW) - 1)< 0 ,(1 - ROUND(CELLV(COL-1,ROW),2)) * CELLV(COL-2,ROW),EMPTYV())";
+        cs.Title = new Label(9, "Problem Index");
+        header.Add(cs);
 
         return header;
     }
@@ -505,21 +496,12 @@ class TATableUtils{
             headerQuestion.AnswerMask = mask;
             headerQuestion.IsCollapsed = true;
 
-            var headerCategories: HeaderCategories = new HeaderCategories();
-            headerCategories.Totals = false;
-            headerCategories.Distributions.Enabled = true;
-            headerCategories.Distributions.Count = true;
-            headerCategories.HideData = true;
-
-            var headerFormula: HeaderFormula = new HeaderFormula();
-            headerFormula.Type = FormulaType.Expression;
-            headerFormula.HideData = false;
-            headerFormula.Decimals = 2;
-            headerFormula.Expression = "IF(((cellv(col-11,row)+cellv(col-10,row)+cellv(col-9,row)+cellv(col-8,row)+cellv(col-7,row)+cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))>0),(((cellv(col-11,row)*(-5)+cellv(col-10,row)*(-4)+cellv(col-9,row)*(-3)+cellv(col-8,row)*(-2)+cellv(col-7,row)*(-1)+cellv(col-5,row)+cellv(col-4,row)*(2)+cellv(col-3,row)*(3)+cellv(col-2,row)*(4)+cellv(col-1,row)*(5))*10/(cellv(col-11,row)+cellv(col-10,row)+cellv(col-9,row)+cellv(col-8,row)+cellv(col-7,row)+cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row)))/10),0)";
-            headerFormula.Title = new Label(9, "Avg");
+            var headerStatistics: HeaderStatistics = new HeaderStatistics();
+            headerStatistics.Decimals = 2;
+            headerStatistics.HideHeader = true;
 
             headerTimeSeries.SubHeaders.Add(headerCategories);
-            headerTimeSeries.SubHeaders.Add(headerFormula);
+            headerTimeSeries.SubHeaders.Add(headerStatistics);
         }else{
             headerQuestion = getTAQuestionHeader("overallSentiment");
         }
