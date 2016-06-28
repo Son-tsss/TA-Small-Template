@@ -204,9 +204,11 @@ class TATableUtils{
         colq.Distributions.HorizontalPercents = false;
         colq.Distributions.VerticalPercents = false;
         colq.Totals = true;
-        //header.Add(colq);
+        header.Add(colq);
 
 
+        colq  = new HeaderCategories();
+        header.Add(colq);
 
         var headerStatistics: HeaderStatistics = new HeaderStatistics();
         headerStatistics.Decimals = 2;
