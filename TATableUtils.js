@@ -600,6 +600,12 @@ class TATableUtils{
 
             case "type6":
                 table.ColumnHeaders.AddRange(getProblemIndexHeader());
+
+                var headerStatistics: HeaderStatistics = new HeaderStatistics();
+                headerStatistics.Decimals = 2;
+                headerStatistics.HideHeader = false;
+
+                table.ColumnHeaders.Add(headerStatistics);
                 /*table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
                 ]));*/
