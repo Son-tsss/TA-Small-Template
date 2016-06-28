@@ -204,7 +204,7 @@ class TATableUtils{
         colq.Distributions.HorizontalPercents = false;
         colq.Distributions.VerticalPercents = false;
         colq.Totals = true;
-        header.Add(colq);
+        //header.Add(colq);
 
 
 
