@@ -198,7 +198,7 @@ class TATableUtils{
      */
     static function getProblemIndexHeader(){
         var header: HeaderCollection = new HeaderCollection();
-        /*var colq: HeaderCategories = new HeaderCategories();
+        var colq: HeaderCategories = new HeaderCategories();
 
         colq.Mask.Type = MaskType.HideAll;
         colq.Distributions.HorizontalPercents = false;
@@ -206,22 +206,27 @@ class TATableUtils{
         colq.Totals = true;
         header.Add(colq);
 
+        colq=new HeaderCategories();
+        colq.HideData = true;
+        colq.Distributions.HorizontalPercents = false;
+        colq.Distributions.VerticalPercents = false;
+        colq.Totals = true;
+        header.Add(colq);
 
-        colq  = new HeaderCategories();
-        header.Add(colq);*/
-
-        var headerStatistics: HeaderStatistics = new HeaderStatistics();
-        headerStatistics.Decimals = 2;
-        headerStatistics.HideHeader = false;
-
-        header.Add(headerStatistics);
-/*
         var cf: HeaderFormula = new HeaderFormula();
+
+        cf.Type = FormulaType.Expression;
+        cf.Decimals = 2;
+        cf.Expression = "IF(((cellv(col-1,row))>0),(((cellv(col-12,row)*(-5)+cellv(col-11,row)*(-4)+cellv(col-10,row)*(-3)+cellv(col-9,row)*(-2)+cellv(col-8,row)*(-1)+cellv(col-6,row)+cellv(col-5,row)*(2)+cellv(col-4,row)*(3)+cellv(col-3,row)*(4)+cellv(col-2,row)*(5))*10/(cellv(col-1,row)))/10),EMPTYV())";
+        cf.Title = new Label(9, "Avg");
+        header.Add(cf);
+
+        cf = new HeaderFormula();
         cf.Decimals = 0;
         cf.Type = FormulaType.Expression;
         cf.Expression = "IF((CELLV(COL-1,ROW) - 1)< 0 ,(1 - ROUND(CELLV(COL-1,ROW),2)) * CELLV(COL-2,ROW),EMPTYV())";
         cf.Title = new Label(9, "Problem Index");
-        //header.Add(cf);*/
+        header.Add(cf);
 
         return header;
     }
@@ -500,11 +505,21 @@ class TATableUtils{
             headerQuestion.AnswerMask = mask;
             headerQuestion.IsCollapsed = true;
 
-            var headerStatistics: HeaderStatistics = new HeaderStatistics();
-            headerStatistics.Decimals = 2;
-            headerStatistics.HideHeader = true;
+            var headerCategories: HeaderCategories = new HeaderCategories();
+            headerCategories.Totals = false;
+            headerCategories.Distributions.Enabled = true;
+            headerCategories.Distributions.Count = true;
+            headerCategories.HideData = true;
 
-            headerTimeSeries.SubHeaders.Add(headerStatistics);
+            var headerFormula: HeaderFormula = new HeaderFormula();
+            headerFormula.Type = FormulaType.Expression;
+            headerFormula.HideData = false;
+            headerFormula.Decimals = 2;
+            headerFormula.Expression = "IF(((cellv(col-11,row)+cellv(col-10,row)+cellv(col-9,row)+cellv(col-8,row)+cellv(col-7,row)+cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row))>0),(((cellv(col-11,row)*(-5)+cellv(col-10,row)*(-4)+cellv(col-9,row)*(-3)+cellv(col-8,row)*(-2)+cellv(col-7,row)*(-1)+cellv(col-5,row)+cellv(col-4,row)*(2)+cellv(col-3,row)*(3)+cellv(col-2,row)*(4)+cellv(col-1,row)*(5))*10/(cellv(col-11,row)+cellv(col-10,row)+cellv(col-9,row)+cellv(col-8,row)+cellv(col-7,row)+cellv(col-5,row)+cellv(col-4,row)+cellv(col-3,row)+cellv(col-2,row)+cellv(col-1,row)))/10),EMPTYV())";
+            headerFormula.HideHeader = true;
+
+            headerTimeSeries.SubHeaders.Add(headerCategories);
+            headerTimeSeries.SubHeaders.Add(headerFormula);
         }else{
             headerQuestion = getTAQuestionHeader("overallSentiment");
         }
@@ -600,16 +615,10 @@ class TATableUtils{
 
             case "type6":
                 table.ColumnHeaders.AddRange(getProblemIndexHeader());
-
-                var headerStatistics: HeaderStatistics = new HeaderStatistics();
-                headerStatistics.Decimals = 2;
-                headerStatistics.HideHeader = false;
-
-                table.ColumnHeaders.Add(headerStatistics);
-                /*table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
-                ]));*/
-                table.Sorting.Rows.Position = 1;
+                ]));
+                table.Sorting.Rows.Position = 15;
                 break;
 
             default:
