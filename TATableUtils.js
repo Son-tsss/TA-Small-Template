@@ -208,10 +208,11 @@ class TATableUtils{
 
 
 
-        var cs: HeaderStatistics = new HeaderStatistics();
-        cs.Decimals = 2;
-        cs.HideData = false;
-        header.Add(cs);
+        var headerStatistics: HeaderStatistics = new HeaderStatistics();
+        headerStatistics.Decimals = 2;
+        headerStatistics.HideHeader = false;
+
+        header.Add(headerStatistics);
 
         var cf: HeaderFormula = new HeaderFormula();
         cf.Decimals = 0;
