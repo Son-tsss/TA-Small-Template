@@ -198,7 +198,7 @@ class TATableUtils{
      */
     static function getProblemIndexHeader(){
         var header: HeaderCollection = new HeaderCollection();
-        var colq: HeaderCategories = new HeaderCategories();
+        /*var colq: HeaderCategories = new HeaderCategories();
 
         colq.Mask.Type = MaskType.HideAll;
         colq.Distributions.HorizontalPercents = false;
@@ -208,20 +208,20 @@ class TATableUtils{
 
 
         colq  = new HeaderCategories();
-        header.Add(colq);
+        header.Add(colq);*/
 
         var headerStatistics: HeaderStatistics = new HeaderStatistics();
         headerStatistics.Decimals = 2;
         headerStatistics.HideHeader = false;
 
         header.Add(headerStatistics);
-
+/*
         var cf: HeaderFormula = new HeaderFormula();
         cf.Decimals = 0;
         cf.Type = FormulaType.Expression;
         cf.Expression = "IF((CELLV(COL-1,ROW) - 1)< 0 ,(1 - ROUND(CELLV(COL-1,ROW),2)) * CELLV(COL-2,ROW),EMPTYV())";
         cf.Title = new Label(9, "Problem Index");
-        //header.Add(cf);
+        //header.Add(cf);*/
 
         return header;
     }
@@ -600,10 +600,10 @@ class TATableUtils{
 
             case "type6":
                 table.ColumnHeaders.AddRange(getProblemIndexHeader());
-                table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
+                /*table.ColumnHeaders.Add(getChartHeader(ChartComboType.Bar,[
                     {Formula: "cellv(col-1,row)", Color: TAConfig.Design.NegNeuPosPalette.Negative}
-                ]));
-                table.Sorting.Rows.Position = 15;
+                ]));*/
+                table.Sorting.Rows.Position = 1;
                 break;
 
             default:
