@@ -32,6 +32,8 @@ class TAConfig {
             TAQuestionName: "comment2", // the question ID of the Text Analytics verbatim quesiton
             TAModelNo : "779",	// the Genius Model ID
 
+            OverallAnalysisPageId: "ta_overall_analisys",
+            DetailedAnalysisPageId: "ta_detailed_analysis",
             TATimeVariable: "interview_start",
           	TACategoryListParameter: "pCategoryList",
           	TASubcategoryListParameter: "pSubcategoryList",
@@ -53,6 +55,8 @@ class TAConfig {
             TAQuestionName: "comment2", // the question ID of the Text Analytics verbatim quesiton
             TAModelNo : "779",	// the Genius Model ID
 
+            OverallAnalysisPageId: "ta_overall_analisys",
+            DetailedAnalysisPageId: "ta_detailed_analysis",
             TATimeVariable: "interview_start",
           	TACategoryListParameter: "pCategoryList",
         	TASubcategoryListParameter: "pSubcategoryList",

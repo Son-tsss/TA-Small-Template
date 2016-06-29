@@ -389,11 +389,11 @@ class TATableUtils{
         table.CssClass = "hidden";
 
         if(TALibrary.currentQuestion.currentTheme<0){
-            setupTableDrilldown(table, "ta_overall_analysis");
+            setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
         }else{
-            //if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,"ta_detailed_analysis",true)
-        //}
+            if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
+                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
+        }
     }
 
     /**
@@ -428,10 +428,10 @@ class TATableUtils{
         table.CssClass = "hidden";
 
         if(TALibrary.currentQuestion.currentTheme<0){
-            setupTableDrilldown(table, "ta_overall_analysis");
+            setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
         }else{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,"ta_detailed_analysis",true)
+                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
     }
 
@@ -454,10 +454,10 @@ class TATableUtils{
         table.CssClass = "hidden";
 
         if(TALibrary.currentQuestion.currentTheme<0){
-            setupTableDrilldown(table, "ta_overall_analysis");
+            setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
         }else{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,"ta_detailed_analysis",true)
+                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
     }
 
@@ -480,11 +480,10 @@ class TATableUtils{
         table.CssClass = "hidden";
 
         if(TALibrary.currentQuestion.currentTheme<0){
-            setupTableDrilldown(table, "ta_overall_analysis");
-
+            setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
         }else{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,"ta_detailed_analysis",true)
+                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
     }
 
@@ -649,10 +648,10 @@ class TATableUtils{
         }
 
         if(TALibrary.currentQuestion.currentTheme<0){
-            setupTableDrilldown(table, "ta_detailed_analysis");
+            setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId);
         }else{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,"ta_detailed_analysis",true)
+                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
 
     }
