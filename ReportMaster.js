@@ -78,6 +78,16 @@ class ReportMaster {
 			"        display: table-cell;" +
 			"        vertical-align: middle;" +
 			"    }" +
+			"header #ta-report-name span, header #ta-report-name span div {" +
+			" height: 70px; " +
+			" display: table-cell; " +
+			" vertical-align: middle;" +
+			"} " +
+			"header #ta-logo div,header #ta-logo div img {" +
+			" display: inline-block; " +
+			" height: 70px; " +
+			" position: relative;" +
+			"} "+
 			"    header #ta-menu{" +
 			"        line-height: 1;" +
 			"        font-size: 1px;" +
