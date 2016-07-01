@@ -1,27 +1,19 @@
 class ReportMaster {
-	static function
-
-	txtCustomerLogo_Hide(context) {
+	static function txtCustomerLogo_Hide(context) {
 		return false;
 	}
 
-	static function
-
-	txtCustomerLogo_Render(context) {
+	static function txtCustomerLogo_Render(context) {
 		if (TAConfig.Design.Logo !== null) {
 			context.component.Output.Append('<img border="0" hspace="0" src="' + TAConfig.Design.Logo + '" height="65">');
 		}
 	}
 
-	static function
-
-	txtStyles_Hide(context) {
+	static function txtStyles_Hide(context) {
 		return false;
 	}
 
-	static function
-
-	txtStyles_Render(context) {
+	static function txtStyles_Render(context) {
 		var str = "<style>" +
 			"    body{" +
 			"        font-family: Arial;" +
@@ -378,70 +370,73 @@ class ReportMaster {
 			"            width: 100%;" +
 			"        }" +
 			"    }" +
-
-			"</style>" +
-			"<script>" +
-			"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
-			"var paletteTrending = ['" + TAConfig.Design.ComplimentaryColor + "','" + TAConfig.Design.DefaultColor + "'];" +
-			"var palettePositive = ['" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
-			"var paletteNegative = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "'];" +
-			"var paletteOverallSatisfaction = ['" + TAConfig.Design.DefaultColor + "'];" +
-			" Y.use(\"cssbutton\");" +
-			"    YUI().use('event-custom', function(Y)" +
-			"    {" +
-			"        Y.Global.on('cf:chartBeforeCreate', function(eventData)" +
-			"        {" +
-			"            console.log(eventData);" +
-			"            delete eventData.chartOptions.chart.width;" +
-			"            var chartOptions = eventData.chartOptions;" +
-			"            switch(eventData.chartInfo.chartName){" +
-			"                case \"chtTopThemes\":" +
-			"                    chartOptions.chart.type = \"column\";" +
-			"                    chartOptions.colors = paletteNPS;" +
-			"                    chartOptions.legend.enabled = true;" +
-			"                    break;" +
-			"                case \"chtTopTrending\":" +
-			"                    chartOptions.chart.type = \"column\";" +
-			"                    chartOptions.colors = paletteTrending;" +
-			"                    chartOptions.legend.enabled = true;" +
-			"                    break;" +
-			"                case \"chtTopPositive\":" +
-			"                    chartOptions.chart.type = \"column\";" +
-			"                    chartOptions.colors = palettePositive;" +
-			"                    chartOptions.legend.enabled = false;" +
-			"                    break;" +
-			"                case \"chtTopNegative\":" +
-			"                    chartOptions.chart.type = \"column\";" +
-			"                    chartOptions.colors = paletteNegative;" +
-			"                    chartOptions.legend.enabled = false;" +
-			"                    break;" +
-			"                case \"chtSentimentTrend\":" +
-			"                    chartOptions.chart.type = \"line\";" +
-			"                    chartOptions.colors = paletteOverallSatisfaction;" +
-			"                    break" +
-			"            }" +
-			"            chartOptions.legend.shadow = false;" +
-			"            chartOptions.legend.borderWidth = 0;" +
-			"            chartOptions.legend.itemStyle.color = \"" + TAConfig.Design.DarkGrey + "\";" +
-			"            chartOptions.legend.itemStyle.fontSize = \"12px\";" +
-			"            chartOptions.xAxis.gridLineColor = \"" + TAConfig.Design.DarkGrey + "\";" +
-			"            chartOptions.xAxis.labels.style.color = \"" + TAConfig.Design.DarkGrey + "\";" +
-			"            chartOptions.xAxis.labels.style.fontSize = \"12px\";" +
-			"            chartOptions.yAxis.gridLineColor = \"" + TAConfig.Design.DarkGrey + "\";" +
-			"            chartOptions.yAxis.labels.enabled =false;" +
-			"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
-			"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
-			"        });" +
-			"    });"+
-			"</script>";
-
-
-
-
-
+			"</style>";
 
 		context.component.Output.Append(str);
 	}
+
+	static function txtStcripts_Hide(context) {
+	return false;
+}
+
+	static function txtScripts_Render(context) {
+	var str = "<script>" +
+		"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
+		"var paletteTrending = ['" + TAConfig.Design.ComplimentaryColor + "','" + TAConfig.Design.DefaultColor + "'];" +
+		"var palettePositive = ['" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
+		"var paletteNegative = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "'];" +
+		"var paletteOverallSatisfaction = ['" + TAConfig.Design.DefaultColor + "'];" +
+		" Y.use(\"cssbutton\");" +
+		"    YUI().use('event-custom', function(Y)" +
+		"    {" +
+		"        Y.Global.on('cf:chartBeforeCreate', function(eventData)" +
+		"        {" +
+		"            console.log(eventData);" +
+		"            delete eventData.chartOptions.chart.width;" +
+		"            var chartOptions = eventData.chartOptions;" +
+		"            switch(eventData.chartInfo.chartName){" +
+		"                case \"chtTopThemes\":" +
+		"                    chartOptions.chart.type = \"column\";" +
+		"                    chartOptions.colors = paletteNPS;" +
+		"                    chartOptions.legend.enabled = true;" +
+		"                    break;" +
+		"                case \"chtTopTrending\":" +
+		"                    chartOptions.chart.type = \"column\";" +
+		"                    chartOptions.colors = paletteTrending;" +
+		"                    chartOptions.legend.enabled = true;" +
+		"                    break;" +
+		"                case \"chtTopPositive\":" +
+		"                    chartOptions.chart.type = \"column\";" +
+		"                    chartOptions.colors = palettePositive;" +
+		"                    chartOptions.legend.enabled = false;" +
+		"                    break;" +
+		"                case \"chtTopNegative\":" +
+		"                    chartOptions.chart.type = \"column\";" +
+		"                    chartOptions.colors = paletteNegative;" +
+		"                    chartOptions.legend.enabled = false;" +
+		"                    break;" +
+		"                case \"chtSentimentTrend\":" +
+		"                    chartOptions.chart.type = \"line\";" +
+		"                    chartOptions.colors = paletteOverallSatisfaction;" +
+		"                    break" +
+		"            }" +
+		"            chartOptions.legend.shadow = false;" +
+		"            chartOptions.legend.borderWidth = 0;" +
+		"            chartOptions.legend.itemStyle.color = \"" + TAConfig.Design.DarkGrey + "\";" +
+		"            chartOptions.legend.itemStyle.fontSize = \"12px\";" +
+		"            chartOptions.xAxis.gridLineColor = \"" + TAConfig.Design.DarkGrey + "\";" +
+		"            chartOptions.xAxis.labels.style.color = \"" + TAConfig.Design.DarkGrey + "\";" +
+		"            chartOptions.xAxis.labels.style.fontSize = \"12px\";" +
+		"            chartOptions.yAxis.gridLineColor = \"" + TAConfig.Design.DarkGrey + "\";" +
+		"            chartOptions.yAxis.labels.enabled =false;" +
+		"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
+		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
+		"        });" +
+		"    });"
+		"</script>";
+
+	context.component.Output.Append(str);
+}
 
 	static function txtReportName_Hide(context) {
 		return false;
