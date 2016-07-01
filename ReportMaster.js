@@ -375,7 +375,7 @@ class ReportMaster {
 		context.component.Output.Append(str);
 	}
 
-	static function txtStcripts_Hide(context) {
+	static function txtScripts_Hide(context) {
 	return false;
 }
 
