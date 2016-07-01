@@ -29,8 +29,10 @@ class Page_ta_detailed_analysis {
                 if(context.state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter) || TALibrary.currentQuestion.currentSubcategory<0 || context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter)!=TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id){
                     context.state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                     TALibrary.currentQuestion.setCurrentAttribute(null);
+                    context.log.LogDebug("if1");
                 }else{
                     TALibrary.currentQuestion.setCurrentAttribute(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TAAttributesListParameter));
+                    context.log.LogDebug("else1");
                 }
 
                 if(context.state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter) || TALibrary.currentQuestion.currentTheme<0 || context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id){
@@ -38,8 +40,10 @@ class Page_ta_detailed_analysis {
                     TALibrary.currentQuestion.setCurrentAttribute(null);
                     context.state.Parameters[TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter]=null;
                     TALibrary.currentQuestion.setCurrentSubcategory(null);
+                    context.log.LogDebug("if2");
                 }else{
                     TALibrary.currentQuestion.setCurrentSubcategory(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter));
+                    context.log.LogDebug("else2");
                 }
 
                 TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
