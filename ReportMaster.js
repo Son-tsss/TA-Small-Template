@@ -380,7 +380,7 @@ class ReportMaster {
 }
 
 	static function txtScripts_Render(context) {
-	var str = "<script>" +
+	var str = "<script>"+
 		"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
 		"var paletteTrending = ['" + TAConfig.Design.ComplimentaryColor + "','" + TAConfig.Design.DefaultColor + "'];" +
 		"var palettePositive = ['" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
@@ -432,7 +432,7 @@ class ReportMaster {
 		"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
 		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
 		"        });" +
-		"    });"
+		"    });"+
 		"</script>";
 
 	context.component.Output.Append(str);
