@@ -61,7 +61,7 @@ class Page_ta_overall_analysis {
     }
 
     static function tblTopTrending_Render(context){
-        TATableUtils.createTopTrendingTable(context.component);
+        TATableUtils.createTopTrendingTable(context.component, context.PageContext.Items["period1"], context.PageContext["period2"]);
     }
 
     static function tblTopPositive_Hide(context){

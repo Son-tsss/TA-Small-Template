@@ -233,25 +233,48 @@ class TATableUtils{
 
     /**
      * function to have TimeSeries column header with rolling
+     * @param {String} unit - unit for rolling "y" for Year, "q" - quarter, "m" - month, "w" - week
      * @param {int} from
      * @param {int} to
      * @return {HeaderQuestion}
      */
-    static function getTimeSeries(from, to){
+    static function getTimeSeries(unit, from, to){
         var questionnaireElement: QuestionnaireElement = TALibrary.currentQuestion.project.CreateQuestionnaireElement(TALibrary.currentQuestion.questionDetails.TATimeVariable);
-        var headerTimeSeries: HeaderQuestion;
+    var headerTimeSeries: HeaderQuestion;
 
-        headerTimeSeries = new HeaderQuestion(questionnaireElement);
-        headerTimeSeries.TimeSeries.FlatLayout = true;
-        headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Year;
-        headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Month;
-        headerTimeSeries.ShowTotals = false;
-        headerTimeSeries.TimeSeries.RollingTimeseries.Enabled = true;
-        headerTimeSeries.TimeSeries.RollingTimeseries.Unit = TimeseriesTimeUnitType.Month;
-        headerTimeSeries.TimeSeries.RollingTimeseries.From = from;
-        headerTimeSeries.TimeSeries.RollingTimeseries.To = to;
+    headerTimeSeries = new HeaderQuestion(questionnaireElement);
+    headerTimeSeries.TimeSeries.FlatLayout = true;
+    headerTimeSeries.TimeSeries.RollingTimeseries.Enabled = true;
 
-        return headerTimeSeries
+    headerTimeSeries.TimeSeries.Time1 = TimeseriesTimeUnitType.Year;
+    switch (unit.toLowerCase()){
+        case "d":
+            headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Month;
+            headerTimeSeries.TimeSeries.Time3 = TimeseriesTimeUnitType.DayOfMonth;
+            headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Day;
+            break;
+        case "w":
+            headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Week;
+            headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Week;
+            break;
+        case "m":
+            headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Month
+            headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Month;;
+            break;
+        case "q":
+            headerTimeSeries.TimeSeries.Time2 = TimeseriesTimeUnitType.Quarter
+            headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Quarter;
+            break;
+        case "y":
+        default:
+            headerTimeSeries.TimeSeries.RollingTimeseries.Unit = RollingUnitType.Year;
+            break;
+    }
+    headerTimeSeries.ShowTotals = false;
+    headerTimeSeries.TimeSeries.RollingTimeseries.From = from;
+    headerTimeSeries.TimeSeries.RollingTimeseries.To = to;
+
+    return headerTimeSeries
     }
 
     /**
@@ -399,16 +422,26 @@ class TATableUtils{
     /**
      * Table for top trending chart
      * @param {Table} table
+     * @param {Object} period1 - object containing data for the 1st chart bar {period: "y/q/m/w/d", rolling_from: -1, rolling_to: -1} default{period: "m", rolling_from: -1, rolling_to: -1}
+     * @param {Object} period2 - object containing data for the 2nd chart bar {period: "y/q/m/w/d", rolling_from: -2, rolling_to: -2} default{period: "m", rolling_from: -2, rolling_to: -2}
      */
-    static function createTopTrendingTable(table: Table){
+    static function createTopTrendingTable(table: Table, period1, period2){
         var headerQuestion: HeaderQuestion = getTAQuestionHeader("categories");
 
         headerQuestion.ShowTotals = false;
         headerQuestion.AnswerMask = TALibrary.currentQuestion.currentTheme>=0?getCategoriesMask():getThemesMask();
         table.RowHeaders.Add(headerQuestion);
 
-        table.ColumnHeaders.Add(getTimeSeries((-2), (-2))); //change to -2
-        table.ColumnHeaders.Add(getTimeSeries((-1), (-1))); //change to -1
+        if(!period1) {
+            period1 = {period: "m", rolling_from: -1, rolling_to: -1}
+        }
+
+        if(!period2){
+            period2 = {period: "m", rolling_from: -2, rolling_to: -2}
+        }
+
+        table.ColumnHeaders.Add(getTimeSeries(period2.period.toLowerCase(),period2.rolling_from, period2.rolling_to));
+        table.ColumnHeaders.Add(getTimeSeries(period1.period.toLowerCase(),period1.rolling_from, period1.rolling_to));
 
         var trendingFormula = new HeaderFormula();
 
@@ -492,7 +525,7 @@ class TATableUtils{
      * @param {Table} table
      */
     static function createSentimentTrendingTable(table: Table){
-        var headerTimeSeries: HeaderQuestion = getTimeSeries((-13), (-1));
+        var headerTimeSeries: HeaderQuestion = getTimeSeries("m",(-13), (-1));
 
         var headerQuestion: HeaderQuestion;
 
