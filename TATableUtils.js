@@ -433,7 +433,8 @@ class TATableUtils{
         table.RowHeaders.Add(headerQuestion);
 
         if(!period1) {
-            period1 = {period: "m", rolling_from: -1, rolling_to: -1}
+            period1 = {period: "m", rolling_from: -1, rolling_to: -1};
+            log.LogDebug("!period1");
         }
 
         if(!period2){
