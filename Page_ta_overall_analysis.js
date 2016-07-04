@@ -61,8 +61,9 @@ class Page_ta_overall_analysis {
     }
 
     static function tblTopTrending_Render(context){
-        context.log.LogDebug("test:) "+!context.pageContext.Items["period1"]);
-        TATableUtils.createTopTrendingTable(context.component, context.pageContext.Items["period1"]?context.pageContext.Items["period1"]:null, context.pageContext["period2"]?context.pageContext.Items["period2"]:null);
+    var period1 = context.pageContext.Items["period1"]?context.pageContext.Items["period1"]:null;
+    var period2 = context.pageContext.Items["period2"]?context.pageContext.Items["period2"]:null;
+        TATableUtils.createTopTrendingTable(context.component, period1, period2);
     }
 
     static function tblTopPositive_Hide(context){
