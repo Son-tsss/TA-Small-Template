@@ -21,11 +21,18 @@ class TAChartUtils {
     }
 
     /**
-     * Reverse categories and series in rows setup
+     * series in rows setup
      * @param {Chart} chart
      */
-    static function setupChart(chart: Chart){
+    static function switchSeriesInRowsOff(chart: Chart){
         chart.SeriesInRows = false;
+    }
+
+    /**
+    * reversed categories setup
+    * @param {Chart} chart
+    */
+    static function switchReversedCategoriesOff(chart: Chart){
         chart.ChartArea.PrimaryAxisX.Invert = false;
     }
 

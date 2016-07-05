@@ -91,7 +91,8 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function chtTopThemes_Render(context){
-        TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchSeriesInRowsOff(context.component);
+        TAChartUtils.switchReversedCategoriesOff(context.component);
         TAChartUtils.switchLabelsOn(context.component);
     }
 
@@ -99,7 +100,8 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function chtTopTrending_Render(context){
-        TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchSeriesInRowsOff(context.component);
+        TAChartUtils.switchReversedCategoriesOff(context.component);
         TAChartUtils.switchFormulasOff(context.component);
         TAChartUtils.switchLabelsOn(context.component);
     }
@@ -108,7 +110,8 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function chtTopPositive_Render(context){
-        TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchSeriesInRowsOff(context.component);
+        TAChartUtils.switchReversedCategoriesOff(context.component);
         TAChartUtils.switchLabelsOn(context.component);
     }
 
@@ -116,7 +119,8 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function chtTopNegative_Render(context){
-        TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchSeriesInRowsOff(context.component);
+        TAChartUtils.switchReversedCategoriesOff(context.component);
         TAChartUtils.switchLabelsOn(context.component);
     }
 
@@ -124,6 +128,7 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function chtSentimentTrend_Render(context){
+        TAChartUtils.switchReversedCategoriesOff(context.component);
         TAChartUtils.switchLabelsOn(context.component);
     }
 
