@@ -12,9 +12,7 @@ class TAChartUtils {
      * @param {ConfirmitFacade} c - confirmit
      * @param {User} u - user
      */
-    static function
-
-    setGlobals(p:ScriptPageContext, l:Logger, r:Report, c:ConfirmitFacade, u:User) {
+    static function setGlobals(p:ScriptPageContext, l:Logger, r:Report, c:ConfirmitFacade, u:User) {
         pageContext = p;
         log = l;
         report = r;
