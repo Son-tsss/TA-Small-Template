@@ -247,7 +247,6 @@ class ReportMaster {
 			"    }" +
 			"    .ta-detailed-table>table>tbody>tr>td>a{" +
 			"        color: " + TAConfig.Design.DarkGrey + ";" +
-			"        text-decoration: none;" +
 			"    }" +
 			"    .ta-detailed-table>table>tbody>tr>td {" +
 			"        color: " + TAConfig.Design.DarkGrey + ";" +
