@@ -395,8 +395,6 @@ class ReportMaster {
 		"            var chartOptions = eventData.chartOptions;" +
 		"            switch(eventData.chartInfo.chartName){" +
 		"                case \"chtTopThemes\":" +
-		"                    chartOptions.chart.type = \"column\";" +
-		"					 chartOptions.plotOptions.column.stacking= \"normal\""+
 		"                    chartOptions.colors = paletteNPS;" +
 		"                    chartOptions.legend.enabled = true;" +
 		"                    break;" +
