@@ -22,12 +22,27 @@ class TAChartUtils {
         user = u;
     }
 
+    /**
+     * Reverse categories and series in rows setup
+     * @param {Chart} chart
+     */
     static function setupChart(chart: Chart){
         chart.SeriesInRows = false;
         chart.ChartArea.PrimaryAxisX.Invert = false;
+    }
+
+    /**
+     * Show x-axis labels
+     * @param {Chart} chart
+     */
+    static function switchLabelsOn(chart: Chart){
         chart.ChartArea.PrimaryAxisX.LabelStyle.Enabled = true;
     }
 
+    /**
+     * Switching of formulas in chart
+     * @param {Chart} chart
+     */
     static function switchFormulasOff(chart: Chart){
             chart.ColumnContent.Categories.Formula = false;
     }

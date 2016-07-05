@@ -120,7 +120,7 @@ class Page_ta_overall_analysis {
         return false;
     }
     static function chtSentimentTrend_Render(context){
-        TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchLabelsOn(context.component);
     }
 
     /*-------verbatims---------*/
