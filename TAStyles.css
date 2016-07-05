@@ -1,0 +1,145 @@
+.ta-default-bg-color{
+    background-color: #003B64;
+}
+
+.ta-chart-titles{
+    padding-bottom:10px;
+    padding-left:10px;
+    font-weight:bold;
+    font-size:110%;
+}
+
+.ta-page-container{
+    width:1000px;
+}
+
+.ta-pagewrapper{
+    background-color:#FFFFFF;
+    border-left:solid 10px #FFFFFF;
+    border-top:solid 10px #FFFFFF;
+    -webkit-border-top-left-radius:10px;
+    -moz-border-top-left-radius:10px;
+    border-top-left-radius:10px;
+    height:100%;
+}
+
+.ta-pagewrapper-bg{
+    background-color:#EEEEEE;
+    padding-top:20px;
+    padding-left:20px;
+}
+
+#ta-parent{
+    position:relative;
+}
+
+.ta-section-header{
+    background-color:#003B64;
+    margin-top:15px;
+    margin-bottom:15px;
+    padding:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:140%;
+    color:#FFFFFF;
+    width:100%;
+}
+
+/* Hides from IE5-mac \*/
+* html .ta-sidebar {
+    width:75px;
+}
+/* End hide from IE5-mac */
+.ta-sidebar{
+    background-color:#EEEEEE;
+    padding-right:5px;
+    padding-left:5px;
+    min-width:75px;
+    max-width:200px;
+}
+
+.ta-text-title{
+    padding-top:2px;
+    padding-right:5px;
+    font-weight:bold;
+    float:left;
+}
+
+.ta-verbatim-table-negative,.ta-verbatim-table-positive{
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    width:500px;
+    color:#FFFFFF;
+}
+
+
+
+
+
+<style>
+.ta-filterpanel {
+    position: fixed;
+    top: 211px;
+    left: 0;
+    background: #fff;
+    padding-bottom: 15px;
+    /* padding: 0px 15px 15px; */
+}
+
+.ta-filterpanel-title {
+    background: #fb8c00;
+    padding: 15px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.ta-filter {
+    padding: 15px 15px 0px 15px;
+    color: #757575;
+}
+
+.ta-filter-title {
+    font-size: 15px;
+    margin-bottom: 10px;
+    color: #757575;
+    max-width: 130px;
+}
+
+.ta-filter-select select {
+    min-width: 100px;
+    color: #757575;
+}
+
+.yui-calcontainer {
+    width: auto!important;
+}
+
+.ta-filter-select select {
+    max-width: 130px;
+}
+
+@media all and (max-width: 1500px) {
+    .ta-filterpanel {
+        margin-top: 20px;
+        position: static;
+        background: #fff;
+        padding-bottom: 15px;
+    }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+

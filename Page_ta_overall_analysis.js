@@ -51,7 +51,6 @@ class Page_ta_overall_analysis {
     static function tblTopThemes_Hide(context){
         return false;
     }
-
     static function tblTopThemes_Render(context){
         TATableUtils.createTopThemesTable(context.component);
     }
@@ -59,7 +58,6 @@ class Page_ta_overall_analysis {
     static function tblTopTrending_Hide(context){
         return false;
     }
-
     static function tblTopTrending_Render(context){
     var period1 = context.pageContext.Items["period1"]?context.pageContext.Items["period1"]:null;
     var period2 = context.pageContext.Items["period2"]?context.pageContext.Items["period2"]:null;
@@ -69,7 +67,6 @@ class Page_ta_overall_analysis {
     static function tblTopPositive_Hide(context){
         return false;
     }
-
     static function tblTopPositive_Render(context){
         TATableUtils.createTopPositiveTable(context.component);
     }
@@ -77,7 +74,6 @@ class Page_ta_overall_analysis {
     static function tblTopNegative_Hide(context){
         return false;
     }
-
     static function tblTopNegative_Render(context){
         TATableUtils.createTopNegativeTable(context.component);
     }
@@ -85,16 +81,53 @@ class Page_ta_overall_analysis {
     static function tblSentimentTrend_Hide(context){
         return false;
     }
-
     static function tblSentimentTrend_Render(context){
         TATableUtils.createSentimentTrendingTable(context.component);
     }
 
+    /*--------charts-----------*/
+
+    static function chtTopThemes_Hide(context){
+        return false;
+    }
+    static function chtTopThemes_Render(context){
+        TAChartUtils.setupChart(context.component);
+    }
+
+    static function chtTopTrending_Hide(context){
+        return false;
+    }
+    static function chtTopTrending_Render(context){
+        TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchFormulasOff(context.component);
+    }
+
+    static function chtTopPositive_Hide(context){
+        return false;
+    }
+    static function chtTopPositive_Render(context){
+        TAChartUtils.setupChart(context.component);
+    }
+
+    static function chtTopNegative_Hide(context){
+        return false;
+    }
+    static function chtTopNegative_Render(context){
+        TAChartUtils.setupChart(context.component);
+    }
+
+    static function chtSentimentTrend_Hide(context){
+        return false;
+    }
+    static function chtSentimentTrend_Render(context){
+        TAChartUtils.setupChart(context.component);
+    }
+
     /*-------verbatims---------*/
+
     static function verbPositive_Hide(context){
         return false;
     }
-
     static function verbPositive_Render(context){
         TATableUtils.createTAVerbatim(context.component);
     }
@@ -102,15 +135,15 @@ class Page_ta_overall_analysis {
     static function verbNegative_Hide(context){
         return false;
     }
-
     static function verbNegative_Render(context){
         TATableUtils.createTAVerbatim(context.component);
     }
 
+    /*---------texts----------*/
+
     static function txtOverallHeader_Hide(context){
         return false;
     }
-
     static function txtOverallHeader_Render(context){
         var label = "Summary";
         if(TALibrary.currentQuestion.currentTheme >=0){

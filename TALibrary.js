@@ -70,6 +70,12 @@ class TALibrary extends TAConfig{
         }catch(e){
             log.LogDebug("There is no TAParameterUtils Class. "+e);
         }
+
+        try{
+            TAChartUtils.setGlobals(pageContext,log,report,confirmit,user);
+        }catch(e){
+            log.LogDebug("There is no TAChartUtils Class. "+e);
+        }
     }
 
     /**
