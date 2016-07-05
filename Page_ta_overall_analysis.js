@@ -92,6 +92,7 @@ class Page_ta_overall_analysis {
     }
     static function chtTopThemes_Render(context){
         TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchLabelsOn(context.component);
     }
 
     static function chtTopTrending_Hide(context){
@@ -100,6 +101,7 @@ class Page_ta_overall_analysis {
     static function chtTopTrending_Render(context){
         TAChartUtils.setupChart(context.component);
         TAChartUtils.switchFormulasOff(context.component);
+        TAChartUtils.switchLabelsOn(context.component);
     }
 
     static function chtTopPositive_Hide(context){
@@ -107,6 +109,7 @@ class Page_ta_overall_analysis {
     }
     static function chtTopPositive_Render(context){
         TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchLabelsOn(context.component);
     }
 
     static function chtTopNegative_Hide(context){
@@ -114,6 +117,7 @@ class Page_ta_overall_analysis {
     }
     static function chtTopNegative_Render(context){
         TAChartUtils.setupChart(context.component);
+        TAChartUtils.switchLabelsOn(context.component);
     }
 
     static function chtSentimentTrend_Hide(context){
