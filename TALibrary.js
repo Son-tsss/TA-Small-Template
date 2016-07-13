@@ -21,6 +21,7 @@ class TALibrary extends TAConfig{
         var question: TAQuestion;
 
         if(!flag){
+            l.LogDebug("setReportAgain");
             pageContext = p,
                 log = l;
             report = r;
