@@ -42,7 +42,6 @@ class TALibrary extends TAConfig{
 
     /**
      * function to transfer globals to libraries
-     * @param {Logger} l - log
      * @param {Report} r - report
      * @param {ConfirmitFacade} c - confirmit
      * @param {User} u - user
