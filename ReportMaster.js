@@ -134,7 +134,10 @@ class ReportMaster {
 			"}" +
 			".ta-parameter {" +
 			"    display: inline-block;" +
-			"    padding: 15px;" +
+			"	 border-radius: 5px;"+
+			"	 -webkit-border-radius: 5px;"+
+			"	 -moz-border-radius: 5px;"+
+			"    padding: 3px;" +
 			"    background: #ffffff;" +
 			"    margin-bottom: 15px;" +
 			"    margin-top: 15px;" +
