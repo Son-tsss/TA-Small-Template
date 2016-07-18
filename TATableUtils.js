@@ -390,6 +390,15 @@ class TATableUtils{
         table.Drilling.Rows.TargetPages = pageIDs;
     }
 
+    /**
+     * Enable or disable table caching
+     * @param {Table} table
+     * @param {Bool} setupCashing - true or false, false by default
+     */
+    static function setupTableCashing(table: Table, setupCashing){
+        table.Caching.Enabled = setupCashing?true:false;
+    }
+
 
     /*---------creating tables--------*/
 
@@ -417,6 +426,8 @@ class TATableUtils{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
                 setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
+
+        setupTableCashing(table);
     }
 
     /**
@@ -466,6 +477,8 @@ class TATableUtils{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
                 setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
+
+        setupTableCashing(table);
     }
 
     /**
@@ -492,6 +505,8 @@ class TATableUtils{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
                 setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
+
+        setupTableCashing(table);
     }
 
     /**
@@ -518,6 +533,8 @@ class TATableUtils{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
                 setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
+
+        setupTableCashing(table);
     }
 
     /**
@@ -562,6 +579,8 @@ class TATableUtils{
         table.ColumnHeaders.Add(headerTimeSeries);
 
         table.CssClass = "hidden";
+
+        setupTableCashing(table);
     }
 
     /**
@@ -686,6 +705,8 @@ class TATableUtils{
             if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
                 setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
+
+        setupTableCashing(table);
 
     }
 
