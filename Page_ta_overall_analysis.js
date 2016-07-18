@@ -193,7 +193,7 @@ class Page_ta_overall_analysis {
     return false;
 }
     static function txtTopThemes_Render(context){
-    var label = "Top Themes: ";
+    var label = "Top Themes";
     context.component.Output.Append(label);
 }
 
