@@ -15,6 +15,9 @@ class ReportMaster {
 
 	static function txtStyles_Render(context) {
 		var str = "<style>" +
+				"html{" +
+				"background-color:" + TAConfig.Design.LightGrey +";"+
+			"}"+
 			"body {" +
 			"    font-family: Arial;" +
 			"}" +
