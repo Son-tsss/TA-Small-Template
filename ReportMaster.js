@@ -220,6 +220,9 @@ class ReportMaster {
 			".ta-verbatim tr:first-of-type {" +
 			"    display: none;" +
 			"}" +
+			"ta-verbatim{"+
+			"    word-break: break-word;"+
+			"}"+
 			".ta-verbatim td {" +
 			"    padding: 7px;" +
 			"    border-bottom: 2px dashed;" +
