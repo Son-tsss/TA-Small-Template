@@ -8,8 +8,8 @@ class Filters {
     }
 
     static function fTAAttribute(context) {
-    TAFilterUtils.currentAttributeFilter(context.component);
-}
+        TAFilterUtils.currentAttributeFilter(context.component);
+    }
 
 
     static function fTANegativeComments(context) {
