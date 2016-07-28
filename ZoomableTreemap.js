@@ -27,11 +27,13 @@ class ZoomableTreemap {
         var headers, flatHierarchy;
       	var tableName = TALibrary.currentQuestion.questionDetails.FlatHierarchyTableName;
         try {
+          	log.LogDebug('try');
           	var newHeaders = TATableData.getTableRowHeaders(tableName);
       		headers = newHeaders;
           
           	log.LogDebug('headers: ' + headers);
         } catch(e) {
+          	log.LogDebug('catch');
           	var cachedHeaders = TALibrary.currentQuestion.flatTableHeaders;
           	headers = cachedHeaders;    
           	
@@ -55,16 +57,18 @@ class ZoomableTreemap {
         var qe1 : QuestionnaireElement = project.CreateQuestionnaireElement(TALibrary.currentQuestion.categorySentiment.questionName);
         var hq1 : HeaderQuestion = new HeaderQuestion(qe1);
         hq1.ShowTotals = false;
+      	hq1.IsCollapsed = true;
         table.RowHeaders.Add(hq1);
       
         var hq2 : HeaderStatistics = new HeaderStatistics();
+      	hq2.UseDefaults = false;
+      	hq2.Statistics.Avg = true;
         table.ColumnHeaders.Add(hq2);
         
         var hq3 : HeaderBase = new HeaderBase();
         table.ColumnHeaders.Add(hq3);
         
-        table.CssClass = "hidden";
-        
+                
         table.Drilling.Rows.Enabled = true;
         table.Drilling.Rows.Type = DrilldownType.SetParameter;
         table.Drilling.Rows.ParameterID = TALibrary.currentQuestion.questionDetails.DrilldownParameter;
