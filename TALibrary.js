@@ -76,6 +76,18 @@ class TALibrary extends TAConfig{
         }catch(e){
             log.LogDebug("There is no TAChartUtils Class. "+e);
         }
+      
+      	try{
+            ZoomableTreemap.setGlobals(pageContext,log,report,confirmit,user);
+        }catch(e){
+            log.LogDebug("There is no ZoomableTreemap Class. "+e);
+        }
+      
+      	try{
+            TATableData.setGlobals(pageContext,log,report,confirmit,user);
+        }catch(e){
+            log.LogDebug("There is no TATableData Class. "+e);
+        }
     }
 
     /**

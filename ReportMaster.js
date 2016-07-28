@@ -131,6 +131,7 @@ class ReportMaster {
 			"    padding-top: 15px;" +
 			"    padding-bottom: 15px;" +
 			"    margin-bottom: 20px;" +
+			"    margin-top: 20px;" +
 			"    border-radius: 10px;" +
 			"    -webkit-border-radius: 10px;" +
 			"    -moz-border-radius: 10px;" +
@@ -212,6 +213,7 @@ class ReportMaster {
 			"}" +
 			".ta-big {" +
 			"    width: 100%;" +
+			"    margin-top: 20px;" +
 			"}" +
 			".ta-chart-title {" +
 			"    text-align: center;" +
@@ -429,6 +431,10 @@ class ReportMaster {
 			"        position: static;" +
 			"        background: #fff;" +
 			"        padding-bottom: 15px;" +
+			"        border-radius: 10px;" +
+			"    }" +
+			"    .ta-filterpanel-title {" +
+			"        border-top-left-radius: 10px;" +
 			"    }" +
 			"}"+
 			"</style>"+

@@ -31,6 +31,8 @@ class TAQuestion{
     var currentTheme = -1;
     var currentSubcategory = -1;
     var currentAttribute = -1;
+  
+  	var flatTableHeaders;
 
 
     /**
