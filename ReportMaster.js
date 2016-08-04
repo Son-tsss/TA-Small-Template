@@ -501,6 +501,12 @@ class ReportMaster {
 		"            chartOptions.yAxis.labels.enabled =false;" +
 		"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
 		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
+		"            chartOptions.plotOptions.series.maxPointWidth = 60;" +
+		"            chartOptions.plotOptions.column.maxPointWidth = 60;" +
+		"            chartOptions.plotOptions.bar.maxPointWidth = 60;" +
+		"            chartOptions.plotOptions.series.pointWidth = 60;" +
+		"            chartOptions.plotOptions.column.pointWidth = 60;" +
+		"            chartOptions.plotOptions.bar.pointWidth = 60; " + 		
 		"        });" +
 		"    });"+
 		"</script>";
