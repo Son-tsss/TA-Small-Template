@@ -429,7 +429,7 @@ class TATableUtils{
         } else {
 			if (TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length != 0)
 			{
-				if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
+				//if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
 					setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
 			}
         }
