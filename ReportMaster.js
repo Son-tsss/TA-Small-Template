@@ -501,9 +501,12 @@ class ReportMaster {
 		"            chartOptions.yAxis.labels.enabled =false;" +
 		"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
 		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
-		"            chartOptions.plotOptions.series.maxPointWidth = 60;" +
-		"            chartOptions.plotOptions.column.maxPointWidth = 60;" +
-		"            chartOptions.plotOptions.bar.maxPointWidth = 60;" +	
+		"            console.log(chartOptions.plotOptions.series);" +
+		"            if (chartOptions.serier.length < 5) {" +
+		"            	chartOptions.plotOptions.series.maxPointWidth = 60;" +
+		"            	chartOptions.plotOptions.column.maxPointWidth = 60;" +
+		"            	chartOptions.plotOptions.bar.maxPointWidth = 60;" +
+		"            }"		
 		"        });" +
 		"    });"+
 		"</script>";
