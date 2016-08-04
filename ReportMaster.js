@@ -466,7 +466,7 @@ class ReportMaster {
 		"        })" +
 		"        " +
 		"        " +
-		"    })(Highcharts)" + 
+		"    })(Highcharts);" + 
 		"      " + 
 		"      " + 
 		"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
