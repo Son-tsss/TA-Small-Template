@@ -150,9 +150,9 @@ class Page_ta_detailed_analysis {
 				if(!f3) {
 					log.LogDebug(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
 				}
-				if (!f1 && !f3)
+				if (!f1 && !f3) {
 					log.LogDebug('3: ' + state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
-				}
+				} 
 				log.LogDebug('ENDING');
 				
                 if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter) 
