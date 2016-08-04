@@ -506,7 +506,7 @@ class ReportMaster {
 		"               chartOptions.plotOptions.series.pointWidth = 60;" +
 		"               chartOptions.plotOptions.column.pointWidth = 60;" +
 		"               chartOptions.plotOptions.bar.pointWidth = 60;" +
-		"            }"		
+		"            }"	+
 		"        });" +
 		"    });"+
 		"</script>";
