@@ -450,6 +450,25 @@ class ReportMaster {
 
 	static function txtScripts_Render(context) {
 	var str = "<script>"+
+		"$(function () {" +
+		"    (function(H) { " +
+		"        var each = H.each;" +
+		"        H.wrap(H.seriesTypes.column.prototype, 'drawPoints', function(proceed) {" +
+		"            var series = this;" +
+		"            if(series.data.length > 0 ){" +
+		"                var width = series.barW > series.options.maxPointWidth ? series.options.maxPointWidth : series.barW;" +
+		"                each(this.data, function(point) {" +
+		"                    point.shapeArgs.x += (point.shapeArgs.width - width) / 2;" +
+		"                    point.shapeArgs.width = width;" +
+		"                });" +
+		"            }" +
+		"            proceed.call(this);" +
+		"        })" +
+		"        " +
+		"        " +
+		"    })(Highcharts)" + 
+		"      " + 
+		"      " + 
 		"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
 		"var paletteTrending = ['" + TAConfig.Design.ComplimentaryColor + "','" + TAConfig.Design.DefaultColor + "'];" +
 		"var palettePositive = ['" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
@@ -503,7 +522,7 @@ class ReportMaster {
 		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
 		"            chartOptions.plotOptions.series.maxPointWidth = 60;" +
 		"            chartOptions.plotOptions.column.maxPointWidth = 60;" +
-		"            chartOptions.plotOptions.bar.maxPointWidth = 60;" +	
+		"            chartOptions.plotOptions.bar.maxPointWidth = 60;" +
 		"        });" +
 		"    });"+
 		"</script>";
