@@ -330,16 +330,20 @@ class TATableUtils{
      * @return {MaskFlat}
      */
     static function getCategoriesMask(){
-        var mask: MaskFlat = new MaskFlat();
-
-        mask.IsInclusive = true;
-
-        for(var i=0; i<TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length; i++){
-            mask.Codes.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children[i].id);
-        }
-
-        return mask
-    }
+		var mask: MaskFlat = new MaskFlat();
+		mask.IsInclusive = true;
+		if (TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length > 0)
+		{
+			for(var i=0; i<TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children.length; i++){
+				mask.Codes.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].children[i].id);
+			}
+		}
+		else
+		{
+			mask.Codes.Add(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+		}
+		return mask;      
+	}
 
     /**
      * masking only attributes for selected top category
@@ -349,11 +353,16 @@ class TATableUtils{
         var mask: MaskFlat = new MaskFlat();
 
         mask.IsInclusive = true;
-        log.LogDebug("getAttributesMask");
-        for(var i=0; i<TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++){
-            log.LogDebug("Attribute "+i+": "+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
-            mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
-        }
+		if (TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length > 0)
+		{			
+			for(var i=0; i<TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++){
+				mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
+			}
+		}
+		else
+		{
+			mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id);
+		}
 
         return mask
     }
