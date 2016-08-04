@@ -45,8 +45,8 @@ class Page_ta_detailed_analysis {
       
       	var state = context.state;
       	var log = context.log;
-      
-      	if (!state.Parameters.IsNull(drilldownParameter)) {
+		
+      	if (drilldownParameter != null && !state.Parameters.IsNull(drilldownParameter)) {
           	log.LogDebug('1')
           	state.Parameters[categoryParameter] = null;
             TALibrary.currentQuestion.setCurrentTheme(null);
