@@ -138,12 +138,19 @@ class Page_ta_detailed_analysis {
                 }
 
 				log.LogDebug('BEGINNING OF DATA');
-				log.LogDebug('1: ' + state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
-				log.LogDebug(TALibrary.currentQuestion.currentTheme);
-				log.LogDebug('2: ' + TALibrary.currentQuestion.currentTheme < 0);
-				if (!state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)) {
+				var f1 = state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter);
+				log.LogDebug('1: ' + f1);
+				var f2 = TALibrary.currentQuestion.currentTheme;
+				log.LogDebug(f2);
+				var f3 = (f2 < 0);
+				log.LogDebug('2: ' + f3);
+				if (!f1) {
 					log.LogDebug(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
+				}
+				if(!f3) {
 					log.LogDebug(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+				}
+				if (!f1 && !f3)
 					log.LogDebug('3: ' + state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
 				}
 				log.LogDebug('ENDING');
