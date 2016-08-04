@@ -5,19 +5,23 @@ class Page_ta_detailed_analysis {
 
     static function Render (context){
         TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
+		context.log.LogDebug('render');
         TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
         switch(context.component.SubmitSource){
-            case "btnResetAttributes":
+            case "btnResetAttributes":				
+				context.log.LogDebug('render case1');
                 context.state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
                 break;
             case "btnResetSubcategories":
+				context.log.LogDebug('render case2');
                 context.state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
                 context.state.Parameters[TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter]=null;
                 TALibrary.currentQuestion.setCurrentSubcategory(null);
                 break;
             case "btnResetCategories":
+				context.log.LogDebug('render case3');
                 context.state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
                 context.state.Parameters[TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter]=null;
@@ -26,6 +30,7 @@ class Page_ta_detailed_analysis {
                 TALibrary.currentQuestion.setCurrentTheme(null)
                 break;
             default:                
+				context.log.LogDebug('render default');
             	setHitlistFilters(context);
                 break;
         }
