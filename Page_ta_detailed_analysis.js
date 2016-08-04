@@ -25,8 +25,105 @@ class Page_ta_detailed_analysis {
                 context.state.Parameters[TALibrary.currentQuestion.questionDetails.TACategoryListParameter]=null;
                 TALibrary.currentQuestion.setCurrentTheme(null)
                 break;
-            default:
-                if(context.state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter) || TALibrary.currentQuestion.currentSubcategory<0 || context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter)!=TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id){
+            default:                
+            	setHitlistFilters(context);
+                break;
+        }
+
+    }
+  
+  	static function setHitlistFilters(context) {         
+      	var drilldownParameter = TALibrary.currentQuestion.questionDetails.DrilldownParameter;
+      	var categoryParameter = TALibrary.currentQuestion.questionDetails.TACategoryListParameter;    
+      	var subCategoryParameter = TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter;    
+      	var attributesParameter = TALibrary.currentQuestion.questionDetails.TAAttributesListParameter;
+      
+      	var state = context.state;
+      	var log = context.log;
+      
+      	if (!state.Parameters.IsNull(drilldownParameter)) {
+          	log.LogDebug('1')
+          	state.Parameters[categoryParameter] = null;
+            TALibrary.currentQuestion.setCurrentTheme(null);
+          
+      	    state.Parameters[subCategoryParameter] = null;
+            TALibrary.currentQuestion.setCurrentSubcategory(null);
+          
+      	    state.Parameters[attributesParameter] = null;
+            TALibrary.currentQuestion.setCurrentAttribute(null);
+          
+          	var value, indexAttribute, 
+                parentSubcategory, indexSubcategory, 
+                parentCategory, indexCategory;
+          	
+          	value = state.Parameters.GetString(drilldownParameter);
+          	indexAttribute = getIndexOf(TALibrary.currentQuestion.attributes, 
+                                            value, 
+                                            function (first, second) { return first.id == second; }); 
+          
+          
+          	log.LogDebug('2')
+              
+        	if (indexAttribute >= 0) {
+              
+          	log.LogDebug('3')
+                TALibrary.currentQuestion.setCurrentAttribute(value);
+              	state.Parameters[attributesParameter] = new ParameterValueResponse(value);
+             	parentSubcategory = TALibrary.currentQuestion.attributes[indexAttribute].parent;
+              	indexSubcategory = getIndexOf(TALibrary.currentQuestion.subcategories, 
+                                                  parentSubcategory, 
+                                                  function (first, second) { return first.id == second; });
+              	if (indexSubcategory >= 0) {
+          	log.LogDebug('4')
+                    TALibrary.currentQuestion.setCurrentSubcategory(parentSubcategory);
+                    state.Parameters[subCategoryParameter] = new ParameterValueResponse(parentSubcategory);
+                    parentCategory = TALibrary.currentQuestion.subcategories[indexSubcategory].parent;
+                    indexCategory = getIndexOf(TALibrary.currentQuestion.themes, 
+                                                   parentCategory, 
+                                                   function (first, second) { return first.id == second; });
+                  	if (indexCategory >= 0) {
+          	log.LogDebug('5')
+                    	TALibrary.currentQuestion.setCurrentTheme(parentCategory);
+                    	state.Parameters[categoryParameter] = new ParameterValueResponse(parentCategory);
+                  	}
+            	}
+            } else {
+          	log.LogDebug('6')
+              	indexSubcategory = getIndexOf(TALibrary.currentQuestion.subcategories, 
+                                                  value, 
+                                                  function (first, second) { return first.id == second; });
+              	if (indexSubcategory >= 0) {
+          	log.LogDebug('7')
+                    TALibrary.currentQuestion.setCurrentSubcategory(value);
+                    state.Parameters[subCategoryParameter] = new ParameterValueResponse(value);
+                    parentCategory = TALibrary.currentQuestion.subcategories[indexSubcategory].parent;    
+                  
+                    indexCategory = getIndexOf(TALibrary.currentQuestion.themes, 
+                                                   parentCategory, 
+                                                   function (first, second) { return first.id == second; });
+                  if (indexCategory >= 0) {
+          	log.LogDebug('9')
+                    	TALibrary.currentQuestion.setCurrentTheme(parentCategory);
+                    	state.Parameters[categoryParameter] = new ParameterValueResponse(parentCategory);
+                  	}
+            	} else {
+          	log.LogDebug('10')
+                	indexCategory = getIndexOf(TALibrary.currentQuestion.themes, 
+                                                   value, 
+                                                   function (first, second) { return first.id == second; });
+                  	if (indexCategory >= 0) {
+          	log.LogDebug('11')
+                    	TALibrary.currentQuestion.setCurrentTheme(value);
+                    	state.Parameters[categoryParameter] = new ParameterValueResponse(value);
+                  	}
+                }
+            }
+          
+          	state.Parameters[drilldownParameter] = null;
+        }      
+      	else
+     	{        
+        		if(context.state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter) || TALibrary.currentQuestion.currentSubcategory<0 || context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter)!=TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id){
                     context.state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                     TALibrary.currentQuestion.setCurrentAttribute(null);
                     context.log.LogDebug("if1");
@@ -47,10 +144,23 @@ class Page_ta_detailed_analysis {
                 }
 
                 TALibrary.currentQuestion.setCurrentTheme(context.state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
-                break;
+                
         }
-
-    }
+      
+      	function getIndexOf(arr, val, compare) {
+            if (!arr || val == null) return -1;
+          
+          	var compare = compare ? compare : function(first, second) { return first == second; };
+     
+            for (var i = 0; i < arr.length; i++) {
+                if (compare(arr[i], val)) {
+                    return i;
+                }
+            }
+          
+            return -1;
+        }
+  	}
 
     static function tblDetailedTable_Hide(context){
         return false;
@@ -196,7 +306,5 @@ class Page_ta_detailed_analysis {
         }
         context.component.Output.Append(label);
     }
-
-
 
 }
