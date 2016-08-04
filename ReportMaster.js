@@ -469,21 +469,35 @@ class ReportMaster {
 		"					 chartOptions.plotOptions.column.stacking= \"normal\";"+
 		"                    chartOptions.colors = paletteNPS;" +
 		"                    chartOptions.legend.enabled = true;" +
+		"                    chartOptions.plotOptions.column.pointWidth = 60;" +
+		"                    chartOptions.plotOptions.series.pointWidth = 60;" +
+		"                    chartOptions.plotOptions.bar.pointWidth = 60;" +
 		"                    break;" +
 		"                case \"chtTopTrending\":" +
 		"                    chartOptions.chart.type = \"column\";" +
 		"                    chartOptions.colors = paletteTrending;" +
 		"                    chartOptions.legend.enabled = true;" +
+		"                    if (chartOptions.series[0].data.length < 3) {" +
+		"                        chartOptions.plotOptions.series.pointWidth = 60;" +
+		"                        chartOptions.plotOptions.column.pointWidth = 60;" +
+		"                        chartOptions.plotOptions.bar.pointWidth = 60;" +
+		"                    }"	+
 		"                    break;" +
 		"                case \"chtTopPositive\":" +
 		"                    chartOptions.chart.type = \"column\";" +
 		"                    chartOptions.colors = palettePositive;" +
 		"                    chartOptions.legend.enabled = false;" +
+		"                    chartOptions.plotOptions.column.pointWidth = 60;" +
+		"                    chartOptions.plotOptions.series.pointWidth = 60;" +
+		"                    chartOptions.plotOptions.bar.pointWidth = 60;" +
 		"                    break;" +
 		"                case \"chtTopNegative\":" +
 		"                    chartOptions.chart.type = \"column\";" +
 		"                    chartOptions.colors = paletteNegative;" +
 		"                    chartOptions.legend.enabled = false;" +
+		"                    chartOptions.plotOptions.column.pointWidth = 60;" +
+		"                    chartOptions.plotOptions.series.pointWidth = 60;" +
+		"                    chartOptions.plotOptions.bar.pointWidth = 60;" +
 		"                    break;" +
 		"                case \"chtSentimentTrend\":" +
 		"                    chartOptions.chart.type = \"line\";" +
@@ -501,12 +515,6 @@ class ReportMaster {
 		"            chartOptions.yAxis.labels.enabled =false;" +
 		"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
 		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
-		"            console.log(chartOptions.plotOptions.series);" +
-		"            if (chartOptions.series[0].data.length < 3) {" +
-		"               chartOptions.plotOptions.series.pointWidth = 60;" +
-		"               chartOptions.plotOptions.column.pointWidth = 60;" +
-		"               chartOptions.plotOptions.bar.pointWidth = 60;" +
-		"            }"	+
 		"        });" +
 		"    });"+
 		"</script>";
