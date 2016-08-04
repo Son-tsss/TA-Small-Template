@@ -138,12 +138,14 @@ class Page_ta_detailed_analysis {
                 }
 
 				log.LogDebug('BEGINNING OF DATA');
-				log.LogDebug(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
+				log.LogDebug('1: ' + state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
 				log.LogDebug(TALibrary.currentQuestion.currentTheme);
-				log.LogDebug(TALibrary.currentQuestion.currentTheme < 0);
-				log.LogDebug(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
-				log.LogDebug(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
-				log.LogDebug(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+				log.LogDebug('2: ' + TALibrary.currentQuestion.currentTheme < 0);
+				if (!state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)) {
+					log.LogDebug(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
+					log.LogDebug(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+					log.LogDebug('3: ' + state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+				}
 				log.LogDebug('ENDING');
 				
                 if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter) 
