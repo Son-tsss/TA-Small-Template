@@ -128,7 +128,10 @@ class Page_ta_detailed_analysis {
         }      
       	else
      	{        
-        		if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter) || TALibrary.currentQuestion.currentSubcategory<0 || state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter)!=TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id){
+        		if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter) 
+					//|| TALibrary.currentQuestion.currentSubcategory<0 
+					//|| state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter)!=TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id
+				){
                     state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                     TALibrary.currentQuestion.setCurrentAttribute(null);
                     log.LogDebug("if1");
@@ -151,13 +154,15 @@ class Page_ta_detailed_analysis {
 					log.LogDebug(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
 				}
 				if (!f1 && !f3) {
-					log.LogDebug('3: ' + state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+					var f4 = (state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!= TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
+					log.LogDebug('3: ' + f4);
 				} 
 				log.LogDebug('ENDING');
 				
                 if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter) 
-					|| TALibrary.currentQuestion.currentTheme<0 
-				|| state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id){
+					//|| TALibrary.currentQuestion.currentTheme<0 
+					//|| state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id
+				){
                     state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
                     TALibrary.currentQuestion.setCurrentAttribute(null);
                     state.Parameters[TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter]=null;
