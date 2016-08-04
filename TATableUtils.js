@@ -349,20 +349,15 @@ class TATableUtils{
      * masking only attributes for selected top category
      * @return {MaskFlat}
      */
-    static function getAttributesMask(){
+	static function getAttributesMask(){
         var mask: MaskFlat = new MaskFlat();
 
         mask.IsInclusive = true;
-		if (TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length > 0)
-		{			
-			for(var i=0; i<TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++){
-				mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
-			}
-		}
-		else
-		{
-			mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id);
-		}
+        log.LogDebug("getAttributesMask");
+        for(var i=0; i<TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length; i++){
+            log.LogDebug("Attribute "+i+": "+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
+            mask.Codes.Add(TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children[i].id);
+        }
 
         return mask
     }
