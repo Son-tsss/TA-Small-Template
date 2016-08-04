@@ -502,10 +502,10 @@ class ReportMaster {
 		"            chartOptions.plotOptions.series.dataLabels.style.fontSize = \"12px\";" +
 		"            chartOptions.plotOptions.series.dataLabels.style.color = \"" + TAConfig.Design.DarkGrey + "\"; /*add color*/" +
 		"            console.log(chartOptions.plotOptions.series);" +
-		"            if (chartOptions.serier.length < 5) {" +
-		"            	chartOptions.plotOptions.series.pointWidth = 60;" +
-		"            	chartOptions.plotOptions.column.pointWidth = 60;" +
-		"            	chartOptions.plotOptions.bar.pointWidth = 60;" +
+		"            if (chartOptions.series.length < 5) {" +
+		"               chartOptions.plotOptions.series.pointWidth = 60;" +
+		"               chartOptions.plotOptions.column.pointWidth = 60;" +
+		"               chartOptions.plotOptions.bar.pointWidth = 60;" +
 		"            }"		
 		"        });" +
 		"    });"+
