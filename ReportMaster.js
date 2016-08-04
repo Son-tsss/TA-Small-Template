@@ -525,6 +525,7 @@ class ReportMaster {
 		"            chartOptions.plotOptions.bar.maxPointWidth = 60;" +
 		"        });" +
 		"    });"+
+		"});"+
 		"</script>";
 
 	context.component.Output.Append(str);
