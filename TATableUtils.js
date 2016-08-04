@@ -429,11 +429,11 @@ class TATableUtils{
         table.Sorting.Rows.TopN = 5;
         table.CssClass = "hidden";
 
-        if(TALibrary.currentQuestion.currentTheme<0){
+        if(TALibrary.currentQuestion.currentTheme < 0){
             setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
-        }else{
-            if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
+        } else {
+			if(TALibrary.currentQuestion.currentSubcategory < 0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length != 0)
+				setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
 
         setupTableCashing(table);
@@ -480,11 +480,11 @@ class TATableUtils{
         table.Sorting.Rows.TopN = 5;
         table.CssClass = "hidden";
 
-        if(TALibrary.currentQuestion.currentTheme<0){
+        if(TALibrary.currentQuestion.currentTheme < 0){
             setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
-        }else{
-            if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
+        } else {
+			if(TALibrary.currentQuestion.currentSubcategory < 0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length != 0)
+				setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
 
         setupTableCashing(table);
@@ -508,11 +508,11 @@ class TATableUtils{
         table.Sorting.Rows.TopN = 5;
         table.CssClass = "hidden";
 
-        if(TALibrary.currentQuestion.currentTheme<0){
+        if(TALibrary.currentQuestion.currentTheme < 0){
             setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
-        }else{
-            if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
+        } else {
+			if(TALibrary.currentQuestion.currentSubcategory < 0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length != 0)
+				setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
 
         setupTableCashing(table);
@@ -536,11 +536,11 @@ class TATableUtils{
         table.Sorting.Rows.TopN = 5;
         table.CssClass = "hidden";
 
-        if(TALibrary.currentQuestion.currentTheme<0){
+        if(TALibrary.currentQuestion.currentTheme < 0){
             setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.OverallAnalysisPageId);
-        }else{
-            if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
-                setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
+        } else {
+			if(TALibrary.currentQuestion.currentSubcategory < 0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length != 0)
+				setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
 
         setupTableCashing(table);
@@ -711,7 +711,7 @@ class TATableUtils{
         if(TALibrary.currentQuestion.currentTheme<0){
             setupTableDrilldown(table, TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId);
         }else{
-            if(TALibrary.currentQuestion.currentSubcategory<0 || TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length==0)
+            if(TALibrary.currentQuestion.currentSubcategory < 0 && TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].children.length != 0)
                 setupTableDrilldown(table,TALibrary.currentQuestion.questionDetails.DetailedAnalysisPageId,true)
         }
 
