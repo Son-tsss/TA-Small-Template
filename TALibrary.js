@@ -20,16 +20,17 @@ class TALibrary extends TAConfig{
     static function setReport(p: ScriptPageContext,l: Logger,r: Report,c: ConfirmitFacade,u: User){
         var question: TAQuestion;
 
-        if(!flag){
-            l.LogDebug("setReportAgain");
-            pageContext = p,
-                log = l;
-            report = r;
-            confirmit = c;
-            user = u;
+   		pageContext = p,
+		log = l;
+		report = r;
+		confirmit = c;
+		user = u;
 
-            setGlobals(pageContext,log,report,confirmit,user);
-
+		setGlobals(pageContext,log,report,confirmit,user);
+			
+		if(!flag){
+			log.LogDebug("setReportAgain");
+			
             for(var i = 0 ; i<TAQuestions.length; i++){
                 question = new TAQuestion(log,report,confirmit,user,TAQuestions[i]);
                 questions.push(question);
