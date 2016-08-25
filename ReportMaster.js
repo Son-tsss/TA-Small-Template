@@ -449,9 +449,14 @@ class ReportMaster {
 }
 
 	static function txtScripts_Render(context) {
+		
+	var paletteTrendingFirstColor = TAConfig.Design.TopTrendingPallete ? TAConfig.Design.TopTrendingPallete.FirstColor : TAConfig.Design.ComplimentaryColor;
+	var paletteTrendingSecondColor = TAConfig.Design.TopTrendingPallete ? TAConfig.Design.TopTrendingPallete.SecondColor : TAConfig.Design.DefaultColor;
+	
+	
 	var str = "<script>"+
 		"var paletteNPS = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "','" + TAConfig.Design.NegNeuPosPalette.Neutral + "','" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
-		"var paletteTrending = ['" + TAConfig.Design.ComplimentaryColor + "','" + TAConfig.Design.DefaultColor + "'];" +
+		"var paletteTrending = ['" + paletteTrendingFirstColor + "','" + paletteTrendingSecondColor + "'];" +
 		"var palettePositive = ['" + TAConfig.Design.NegNeuPosPalette.Positive + "'];" +
 		"var paletteNegative = ['" + TAConfig.Design.NegNeuPosPalette.Negative + "'];" +
 		"var paletteOverallSatisfaction = ['" + TAConfig.Design.DefaultColor + "'];" +
