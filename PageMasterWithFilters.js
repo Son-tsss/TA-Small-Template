@@ -18,7 +18,7 @@ class PageMasterWithFilters {
             "    /* padding: 0px 15px 15px; */" +
             "}" +
             ".ta-filterpanel-title {" +
-            "    background: #fb8c00;" +
+            "    background: "+TAConfig.Design.DefaultColor+";" +
             "    padding: 15px;" +
             "    color: #fff;" +
             "    font-weight: bold;" +
