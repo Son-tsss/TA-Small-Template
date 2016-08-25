@@ -450,8 +450,8 @@ class ReportMaster {
 
 	static function txtScripts_Render(context) {
 		
-	var paletteTrendingFirstColor = TAConfig.Design.TopTrendingPallete ? TAConfig.Design.TopTrendingPallete.FirstColor : TAConfig.Design.ComplimentaryColor;
-	var paletteTrendingSecondColor = TAConfig.Design.TopTrendingPallete ? TAConfig.Design.TopTrendingPallete.SecondColor : TAConfig.Design.DefaultColor;
+	var paletteTrendingFirstColor = (TAConfig.Design.TopTrendingPallete && TAConfig.Design.TopTrendingPallete.FirstColor) ? TAConfig.Design.TopTrendingPallete.FirstColor : TAConfig.Design.ComplimentaryColor;
+	var paletteTrendingSecondColor = (TAConfig.Design.TopTrendingPallete && TAConfig.Design.TopTrendingPallete.SecondColor) ? TAConfig.Design.TopTrendingPallete.SecondColor : TAConfig.Design.DefaultColor;
 	
 	
 	var str = "<script>"+
