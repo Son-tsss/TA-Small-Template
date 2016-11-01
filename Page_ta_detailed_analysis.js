@@ -65,13 +65,10 @@ class Page_ta_detailed_analysis {
           	indexAttribute = getIndexOf(TALibrary.currentQuestion.attributes, 
                                             value, 
                                             function (first, second) { return first.id == second; }); 
-          
-          
-          	log.LogDebug('2')
+
               
         	if (indexAttribute >= 0) {
-              
-          	log.LogDebug('3')
+
                 TALibrary.currentQuestion.setCurrentAttribute(value);
               	state.Parameters[attributesParameter] = new ParameterValueResponse(value);
              	parentSubcategory = TALibrary.currentQuestion.attributes[indexAttribute].parent;
@@ -79,7 +76,6 @@ class Page_ta_detailed_analysis {
                                                   parentSubcategory, 
                                                   function (first, second) { return first.id == second; });
               	if (indexSubcategory >= 0) {
-          	log.LogDebug('4')
                     TALibrary.currentQuestion.setCurrentSubcategory(parentSubcategory);
                     state.Parameters[subCategoryParameter] = new ParameterValueResponse(parentSubcategory);
                     parentCategory = TALibrary.currentQuestion.subcategories[indexSubcategory].parent;
@@ -87,18 +83,15 @@ class Page_ta_detailed_analysis {
                                                    parentCategory, 
                                                    function (first, second) { return first.id == second; });
                   	if (indexCategory >= 0) {
-          	log.LogDebug('5')
                     	TALibrary.currentQuestion.setCurrentTheme(parentCategory);
                     	state.Parameters[categoryParameter] = new ParameterValueResponse(parentCategory);
                   	}
             	}
             } else {
-          	log.LogDebug('6')
               	indexSubcategory = getIndexOf(TALibrary.currentQuestion.subcategories, 
                                                   value, 
                                                   function (first, second) { return first.id == second; });
               	if (indexSubcategory >= 0) {
-          	log.LogDebug('7')
                     TALibrary.currentQuestion.setCurrentSubcategory(value);
                     state.Parameters[subCategoryParameter] = new ParameterValueResponse(value);
                     parentCategory = TALibrary.currentQuestion.subcategories[indexSubcategory].parent;    
@@ -107,17 +100,14 @@ class Page_ta_detailed_analysis {
                                                    parentCategory, 
                                                    function (first, second) { return first.id == second; });
                   if (indexCategory >= 0) {
-          	log.LogDebug('9')
                     	TALibrary.currentQuestion.setCurrentTheme(parentCategory);
                     	state.Parameters[categoryParameter] = new ParameterValueResponse(parentCategory);
                   	}
             	} else {
-          	log.LogDebug('10')
                 	indexCategory = getIndexOf(TALibrary.currentQuestion.themes, 
                                                    value, 
                                                    function (first, second) { return first.id == second; });
                   	if (indexCategory >= 0) {
-          	log.LogDebug('11')
                     	TALibrary.currentQuestion.setCurrentTheme(value);
                     	state.Parameters[categoryParameter] = new ParameterValueResponse(value);
                   	}
@@ -206,6 +196,11 @@ class Page_ta_detailed_analysis {
     }
 
     static function htlIndividualResponse_Render(context){
+        if (!TALibrary.questions) {
+            TALibrary.setReport(context.pageContext, context.log, context.report, context.confirmit, context.user);
+            TALibrary.setCurrentQuestion(context.pageContext.Items["questionID"]);
+        }
+
         for(var i=0; i<TALibrary.currentQuestion.questionDetails.TAHitlistFields.length; i++){
             context.component.Columns.Add(TATableUtils.getTAHitlistColumn(TALibrary.currentQuestion.questionDetails.TAHitlistFields[i]));
         }
