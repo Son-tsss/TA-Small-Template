@@ -66,7 +66,7 @@ class TAFilterUtils{
         fExpr = pCatList>=0?('ANY(' + TALibrary.currentQuestion.categories.questionName + ',"'+TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id+'")'):'NOT ISNULL('+TALibrary.currentQuestion.overallSentiment.questionName+')';
 
         filter.Expression = fExpr;
-        log.LogDebug("THEME: " + fExpr);
+        //log.LogDebug("THEME: " + fExpr);
     }
 
     /**
@@ -80,7 +80,7 @@ class TAFilterUtils{
         fExpr = pCatList>=0?('ANY(' + TALibrary.currentQuestion.categories.questionName + ',"'+TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id+'")'):'';
 
         filter.Expression = fExpr;
-        log.LogDebug("SUBCAT: " + fExpr);
+        //log.LogDebug("SUBCAT: " + fExpr);
     }
 
     /**
@@ -96,6 +96,6 @@ class TAFilterUtils{
         filter.Expression = fExpr;
 
         log.LogDebug(state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]);
-        log.LogDebug("ATTRIB: " + fExpr);
+        //log.LogDebug("ATTRIB: " + fExpr);
     }
 }
