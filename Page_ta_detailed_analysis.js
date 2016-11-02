@@ -125,20 +125,25 @@ class Page_ta_detailed_analysis {
             if(state.Parameters.IsNull(attributesParameter)) {
                 state.Parameters[attributesParameter] = null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
+                log.LogDebug("1 ATTRIBUTE IS NULL");
             } else {
                 TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
+                log.LogDebug("2 ATTRIBUTE IS NOT NULL");
             }
 
             if(state.Parameters.IsNull(subCategoryParameter)) {
                 state.Parameters[attributesParameter] = null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
+                log.LogDebug("3 SUBCAT IS NULL");
             }else{
-                var indexOfSubCategory =  getIndexOf(hierarchy, state.Parameters.GetString(subCategoryParameter), functionToCompare);
+                var indexOfSubCategory = getIndexOf(hierarchy, state.Parameters.GetString(subCategoryParameter), functionToCompare);
+                log.LogDebug("3 SUBCAT IS NOT NULL: " + indexOfCategory);
                 if (indexOfSubCategory >= 0) {
                     if (getIndexOf(hierarchy[indexOfSubCategory].children, state.Parameters.GetString(attributesParameter), functionToCompare) >= 0) {
+                        log.LogDebug("4 ATTRIBUTE NO RESET");
                         TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
                     } else {
-                        log.LogDebug("ATTRIBUTE RESET");
+                        log.LogDebug("5 ATTRIBUTE RESET");
                         state.Parameters[attributesParameter] = null;
                         TALibrary.currentQuestion.setCurrentAttribute(null);
                     }
@@ -146,16 +151,21 @@ class Page_ta_detailed_analysis {
             }
 
             if(state.Parameters.IsNull(categoryParameter)) {
+                log.LogDebug("6 THEME IS NULL");
                 state.Parameters[attributesParameter] = null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
                 state.Parameters[subCategoryParameter] = null;
                 TALibrary.currentQuestion.setCurrentSubcategory(null);
             }else{
                 var indexOfCategory =  getIndexOf(hierarchy, state.Parameters.GetString(categoryParameter), functionToCompare);
+
+                log.LogDebug("7 THEME IS NOT NULL: " + indexOfCategory);
                 if (indexOfCategory >= 0) {
                     if (getIndexOf(hierarchy[indexOfCategory].children, state.Parameters.GetString(subCategoryParameter), functionToCompare) >= 0) {
                         TALibrary.currentQuestion.setCurrentSubcategory(state.Parameters.GetString(subCategoryParameter));
+                        log.LogDebug("8 SUBCAT AND ATTR NO RESET");
                     } else {
+                        log.LogDebug("9 SUBCAT AND ATTR RESET");
                         state.Parameters[attributesParameter] = null;
                         TALibrary.currentQuestion.setCurrentAttribute(null);
                         state.Parameters[subCategoryParameter] = null;
