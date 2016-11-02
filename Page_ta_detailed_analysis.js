@@ -115,58 +115,46 @@ class Page_ta_detailed_analysis {
             }
           
           	state.Parameters[drilldownParameter] = null;
-        }      
-      	else
-     	{        
-        		if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter) 
-					//|| TALibrary.currentQuestion.currentSubcategory<0 
-					//|| state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter)!=TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id
-				){
-                    state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
-                    TALibrary.currentQuestion.setCurrentAttribute(null);
-                    log.LogDebug("if1");
-                }else{
-                    TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TAAttributesListParameter));
-                    log.LogDebug("else1");
-                }
+        } else {
+            /*
+             if(state.Parameters.IsNull(subCategoryParameter)
+             || TALibrary.currentQuestion.currentSubcategory < 0
+             || state.Parameters.GetString(subCategoryParameter) != TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id
+             ) {
+             state.Parameters[attributesParameter]=null;
+             TALibrary.currentQuestion.setCurrentAttribute(null);
+             }else{
+             TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
+             }*/
 
-				log.LogDebug('BEGINNING OF DATA');
-				var f1 = state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter);
-				log.LogDebug('1: ' + f1);
-				var f2 = TALibrary.currentQuestion.currentTheme;
-				log.LogDebug(f2);
-				var f3 = (f2 < 0);
-				log.LogDebug('2: ' + f3);
-				if (!f1) {
-					log.LogDebug(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
-				}
-				if(!f3) {
-					log.LogDebug(TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
-				}
-				if (!f1 && !f3) {
-					var f4 = (state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!= TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id);
-					log.LogDebug('3: ' + f4);
-				} 
-				log.LogDebug('ENDING');
-				
-                if(state.Parameters.IsNull(TALibrary.currentQuestion.questionDetails.TACategoryListParameter) 
-					//|| TALibrary.currentQuestion.currentTheme<0 
-					//|| state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter)!=TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id
-				){
-                    state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]=null;
-                    TALibrary.currentQuestion.setCurrentAttribute(null);
-                    state.Parameters[TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter]=null;
+
+
+            if(state.Parameters.IsNull(categoryParameter)
+            //|| TALibrary.currentQuestion.currentTheme < 0
+            // || state.Parameters.GetString(categoryParameter) != TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id
+            ) {
+                state.Parameters[attributesParameter]=null;
+                TALibrary.currentQuestion.setCurrentAttribute(null);
+                state.Parameters[subCategoryParameter]=null;
+                TALibrary.currentQuestion.setCurrentSubcategory(null);
+            } else {
+                // {id: String, name: String, children: []}
+                var hierarchy = TALibrary.currentQuestion.hierarchy;
+                var functionToCompare = function(arrItem, val) {
+                    return arrItem.id == val;
+                };
+                var indexOfCategory =  getIndexOf(hierarchy, state.Parameters.GetString(categoryParameter), functionToCompare);
+                if (getIndexOf(hierarchy[indexOfCategory].children, state.Parameters.GetString(subCategoryParameter), functionToCompare) >= 0) {
+                    TALibrary.currentQuestion.setCurrentSubcategory(state.Parameters.GetString(subCategoryParameter));
+                } else {
+                    state.Parameters[subCategoryParameter]=null;
                     TALibrary.currentQuestion.setCurrentSubcategory(null);
-                    log.LogDebug("if2");
-                }else{
-                    TALibrary.currentQuestion.setCurrentSubcategory(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TASubcategoryListParameter));
-                    log.LogDebug("else2");
                 }
+            }
 
-                TALibrary.currentQuestion.setCurrentTheme(state.Parameters.GetString(TALibrary.currentQuestion.questionDetails.TACategoryListParameter));
-                
+            TALibrary.currentQuestion.setCurrentTheme(state.Parameters.GetString(categoryParameter));
         }
-      
+
       	function getIndexOf(arr, val, compare) {
             if (!arr || val == null) return -1;
           
