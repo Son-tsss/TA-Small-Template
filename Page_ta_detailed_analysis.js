@@ -137,7 +137,7 @@ class Page_ta_detailed_analysis {
                 log.LogDebug("3 SUBCAT IS NULL");
             }else{
                 var indexOfSubCategory = getIndexOf(hierarchy, state.Parameters.GetString(subCategoryParameter), functionToCompare);
-                log.LogDebug("3 SUBCAT IS NOT NULL: " + indexOfCategory);
+                log.LogDebug("3 SUBCAT IS NOT NULL: " + indexOfSubCategory);
                 if (indexOfSubCategory >= 0) {
                     if (getIndexOf(hierarchy[indexOfSubCategory].children, state.Parameters.GetString(attributesParameter), functionToCompare) >= 0) {
                         log.LogDebug("4 ATTRIBUTE NO RESET");
