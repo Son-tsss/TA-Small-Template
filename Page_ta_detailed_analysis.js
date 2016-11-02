@@ -117,7 +117,8 @@ class Page_ta_detailed_analysis {
           	state.Parameters[drilldownParameter] = null;
         } else {
             // {id: String, name: String, children: []}
-            var hierarchy = TALibrary.currentQuestion.hierarchy;
+            var subcategories = TALibrary.currentQuestion.subcategories;
+            var themes = TALibrary.currentQuestion.themes;
             var functionToCompare = function(arrItem, val) {
                 return arrItem.id == val;
             };
