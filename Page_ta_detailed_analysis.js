@@ -122,7 +122,13 @@ class Page_ta_detailed_analysis {
                 return arrItem.id == val;
             };
 
-            /*
+            if(state.Parameters.IsNull(attributesParameter)) {
+                state.Parameters[attributesParameter] = null;
+                TALibrary.currentQuestion.setCurrentAttribute(null);
+            } else {
+                TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
+            }
+
             if(state.Parameters.IsNull(subCategoryParameter)) {
                 state.Parameters[attributesParameter] = null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
@@ -136,7 +142,7 @@ class Page_ta_detailed_analysis {
                         TALibrary.currentQuestion.setCurrentAttribute(null);
                     }
                 }
-            }*/
+            }
 
             if(state.Parameters.IsNull(categoryParameter)) {
                 state.Parameters[attributesParameter] = null;
