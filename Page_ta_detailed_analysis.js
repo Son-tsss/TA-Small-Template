@@ -140,17 +140,17 @@ class Page_ta_detailed_analysis {
             TALibrary.currentQuestion.setCurrentTheme(state.Parameters.GetString(categoryParameter));
         }
 
-      	function getIndexOf(arr, val, compare) {
+        function getIndexOf(arr, val, compare) {
             if (!arr || val == null) return -1;
-          
-          	var compare = compare ? compare : function(first, second) { return first == second; };
-     
+
+            var compare = compare ? compare : function(first, second) { return first == second; };
+
             for (var i = 0; i < arr.length; i++) {
                 if (compare(arr[i], val)) {
                     return i;
                 }
             }
-          
+
             return -1;
         }
   	}
