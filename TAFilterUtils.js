@@ -87,7 +87,7 @@ class TAFilterUtils{
      * current attribute filter
      * @param filter
      */
-    static function currentAttributeFilter(filter){
+    static function currentAttributeFilter(filter, state){
         var fExpr : String;
         var pCatList = TALibrary.currentQuestion.currentAttribute;
 
@@ -95,7 +95,7 @@ class TAFilterUtils{
 
         filter.Expression = fExpr;
 
-        //log.LogDebug(state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]);
+        log.LogDebug(state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]);
         log.LogDebug("ATTRIB: " + fExpr);
     }
 }
