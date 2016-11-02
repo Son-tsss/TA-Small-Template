@@ -116,23 +116,38 @@ class Page_ta_detailed_analysis {
           
           	state.Parameters[drilldownParameter] = null;
         } else {
+            // {id: String, name: String, children: []}
+            var hierarchy = TALibrary.currentQuestion.hierarchy;
+            var functionToCompare = function(arrItem, val) {
+                return arrItem.id == val;
+            };
+
+            if(state.Parameters.IsNull(subCategoryParameter)) {
+                state.Parameters[attributesParameter] = null;
+                TALibrary.currentQuestion.setCurrentAttribute(null);
+            }else{
+                var indexOfSubCategory =  getIndexOf(hierarchy, state.Parameters.GetString(subCategoryParameter), functionToCompare);
+                if (getIndexOf(hierarchy[indexOfSubCategory].children, state.Parameters.GetString(attributesParameter), functionToCompare) >= 0) {
+                    TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
+                } else {
+                    state.Parameters[attributesParameter] = null;
+                    TALibrary.currentQuestion.setCurrentAttribute(null);
+                }
+            }
 
             if(state.Parameters.IsNull(categoryParameter)) {
-                state.Parameters[attributesParameter]=null;
+                state.Parameters[attributesParameter] = null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
-                state.Parameters[subCategoryParameter]=null;
+                state.Parameters[subCategoryParameter] = null;
                 TALibrary.currentQuestion.setCurrentSubcategory(null);
             }else{
-                // {id: String, name: String, children: []}
-                var hierarchy = TALibrary.currentQuestion.hierarchy;
-                var functionToCompare = function(arrItem, val) {
-                    return arrItem.id == val;
-                };
                 var indexOfCategory =  getIndexOf(hierarchy, state.Parameters.GetString(categoryParameter), functionToCompare);
                 if (getIndexOf(hierarchy[indexOfCategory].children, state.Parameters.GetString(subCategoryParameter), functionToCompare) >= 0) {
                     TALibrary.currentQuestion.setCurrentSubcategory(state.Parameters.GetString(subCategoryParameter));
                 } else {
-                    state.Parameters[subCategoryParameter]=null;
+                    state.Parameters[attributesParameter] = null;
+                    TALibrary.currentQuestion.setCurrentAttribute(null);
+                    state.Parameters[subCategoryParameter] = null;
                     TALibrary.currentQuestion.setCurrentSubcategory(null);
                 }
             }
