@@ -163,7 +163,7 @@ class Page_ta_detailed_analysis {
                 if (indexOfCategory >= 0) {
                     if (getIndexOf(hierarchy[indexOfCategory].children, state.Parameters.GetString(subCategoryParameter), functionToCompare) >= 0) {
                         TALibrary.currentQuestion.setCurrentSubcategory(state.Parameters.GetString(subCategoryParameter));
-                        log.LogDebug("8 SUBCAT AND ATTR NO RESET");
+                        log.LogDebug("8 SUBCAT AND ATTR NO RESET ");
                     } else {
                         log.LogDebug("9 SUBCAT AND ATTR RESET");
                         state.Parameters[attributesParameter] = null;
