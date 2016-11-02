@@ -116,28 +116,13 @@ class Page_ta_detailed_analysis {
           
           	state.Parameters[drilldownParameter] = null;
         } else {
-            /*
-             if(state.Parameters.IsNull(subCategoryParameter)
-             || TALibrary.currentQuestion.currentSubcategory < 0
-             || state.Parameters.GetString(subCategoryParameter) != TALibrary.currentQuestion.subcategories[TALibrary.currentQuestion.currentSubcategory].id
-             ) {
-             state.Parameters[attributesParameter]=null;
-             TALibrary.currentQuestion.setCurrentAttribute(null);
-             }else{
-             TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
-             }*/
 
-
-
-            if(state.Parameters.IsNull(categoryParameter)
-            //|| TALibrary.currentQuestion.currentTheme < 0
-            // || state.Parameters.GetString(categoryParameter) != TALibrary.currentQuestion.themes[TALibrary.currentQuestion.currentTheme].id
-            ) {
+            if(state.Parameters.IsNull(categoryParameter)) {
                 state.Parameters[attributesParameter]=null;
                 TALibrary.currentQuestion.setCurrentAttribute(null);
                 state.Parameters[subCategoryParameter]=null;
                 TALibrary.currentQuestion.setCurrentSubcategory(null);
-            } else {
+            }else{
                 // {id: String, name: String, children: []}
                 var hierarchy = TALibrary.currentQuestion.hierarchy;
                 var functionToCompare = function(arrItem, val) {
