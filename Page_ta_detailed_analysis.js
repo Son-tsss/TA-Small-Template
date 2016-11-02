@@ -138,6 +138,7 @@ class Page_ta_detailed_analysis {
                     if (getIndexOf(hierarchy[indexOfSubCategory].children, state.Parameters.GetString(attributesParameter), functionToCompare) >= 0) {
                         TALibrary.currentQuestion.setCurrentAttribute(state.Parameters.GetString(attributesParameter));
                     } else {
+                        log.LogDebug("ATTRIBUTE RESET");
                         state.Parameters[attributesParameter] = null;
                         TALibrary.currentQuestion.setCurrentAttribute(null);
                     }
