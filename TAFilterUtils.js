@@ -95,7 +95,7 @@ class TAFilterUtils{
 
         filter.Expression = fExpr;
 
-        log.LogDebug(state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]);
+        //log.LogDebug(state.Parameters[TALibrary.currentQuestion.questionDetails.TAAttributesListParameter]);
         log.LogDebug("ATTRIB: " + fExpr);
     }
 }
