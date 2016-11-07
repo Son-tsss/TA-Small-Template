@@ -8,7 +8,7 @@ class Filters {
     }
 
     static function fTAAttribute(context) {
-        TAFilterUtils.currentAttributeFilter(context.component);
+        TAFilterUtils.currentAttributeFilter(context.component, context.state);
     }
 
 
